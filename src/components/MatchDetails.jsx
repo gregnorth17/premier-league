@@ -1,8 +1,10 @@
+import SportsSoccerIcon from '@mui/icons-material/SportsSoccer'
 import { Box, Typography } from '@mui/material'
 import { Route, Routes } from 'react-router-dom'
 import Lineups from './Lineups'
 import MatchDetailsNav from './MatchDetailsNav'
 import Stats from './Stats'
+
 // import { useParams } from 'react-router-dom'
 // import { useEffect } from 'react'
 // import { useParams } from 'react-router-dom'
@@ -21,9 +23,19 @@ const MatchDetails = ({fixture}) => {
 	// }
 
 
-
-
-	
+	const {
+		events,
+		statistics,
+		lineups,
+		league: {name: leagueName},
+		fixture: {date, status: {short: matchStatus}},
+		teams: {
+						away: {name: awayTeam, logo: awayBadge}, 
+						home: {name: homeTeam, logo: homeBadge}
+					},
+		goals: {away: awayGoals, home: homeGoals}
+	} 
+	= fixture
 
 	
 	// const {fixtureId} = useParams()
@@ -45,28 +57,17 @@ const MatchDetails = ({fixture}) => {
 	// console.log(fixtures)
 	// const fixture = fixtures.find(fixture => fixture.fixture.id == fixtureId)
 	// console.log(fixture)
-	const homeTeam = fixture.teams.home.name
-	const homeBadge = fixture.teams.home.logo
-	const homeGoals = fixture.goals.home
 
-	const awayTeam = fixture.teams.away.name
-	const awayBadge = fixture.teams.away.logo
-	const awayGoals = fixture.goals.away
-
-	const leagueName = fixture.league.name
-	const date = fixture.fixture.date
-
-	const checkGoals = team => {
-		return fixture.events.filter(goal => goal.team.name === team && goal.type === "Goal")
-													.map(goal => {
-																				return (
-																					<Typography key={goal.player.id} variant='body2'>
-																						{goal.player.name} {`${goal.time.elapsed}'`} {goal.detail === "Own Goal" && "(OG)"}
-																					</Typography>
-																				)
-																			})									
-	}
-
+	const checkGoals = team => (
+		events.filter(({team: {name}, type}) => name === team && type === "Goal")
+					.map(({player: {id, name}, time: {elapsed}, detail}) => 
+						(
+							<Typography key={id} variant='body2'>
+								{name} {`${elapsed}'`} {detail === "Own Goal" && "(OG)"}
+							</Typography>
+						)
+					)									
+	)
 
 	return (
 		fixture && 
@@ -82,7 +83,7 @@ const MatchDetails = ({fixture}) => {
 				}}>
 					<Typography>{leagueName}</Typography>
 					<Typography>{new Date(date).toLocaleDateString()}</Typography>
-					<Typography align='center' gridColumn={5}>{fixture.fixture.status.short}</Typography>
+					<Typography align='center' gridColumn={5}>{matchStatus}</Typography>
 					<Box  sx={{
 						height: '48px',
 						width: '48px',
@@ -107,6 +108,15 @@ const MatchDetails = ({fixture}) => {
 					<Box gridColumn={1}>
 						{checkGoals(homeTeam)}
 					</Box>
+					{homeGoals || awayGoals &&
+						<SportsSoccerIcon 
+							sx={{
+								gridColumn: 3,
+								justifySelf: 'center',
+								alignSelf: 'center'
+								}}
+						/>
+					}
 					<Box gridColumn={5}>
 						{checkGoals(awayTeam)}
 					</Box>
@@ -114,8 +124,8 @@ const MatchDetails = ({fixture}) => {
 				</Box>
 				<MatchDetailsNav />
 				<Routes>
-					<Route path='/stats' element={<Stats stats={fixture.statistics} />}  />
-					<Route path='/lineups' element={<Lineups lineups={fixture.lineups} />}  />
+					<Route path='/stats' element={<Stats stats={statistics} />}  />
+					<Route path='/lineups' element={<Lineups lineups={lineups} />}  />
 				</Routes>
 			</Box>
 	)

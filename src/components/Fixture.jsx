@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 
 const Fixture = ({fixture}) => {
-	console.log(fixture)
+	// console.log(fixture)
 	const {logo: homeTeamBadge, name: homeTeamName} = fixture.teams.home
 	const homeTeamScore = fixture.goals.home
 
