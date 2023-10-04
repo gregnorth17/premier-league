@@ -1,4 +1,6 @@
 import { Box } from '@mui/material'
+// import { useContext } from 'react'
+// import { YearContext } from '../App'
 import BasicSelect from '../components/BasicSelect'
 import LeaguePosition from '../components/LeaguePosition'
 import LeagueTable from "../components/LeagueTable"
@@ -10,7 +12,8 @@ import { competitions } from '../data'
 // import Team from "./components/Team"
 
 const Home = ({localLeagueData}) => {
-
+		// const context = useContext(YearContext)
+		// console.log(context)
 		return (
 		<>
 			{localLeagueData &&

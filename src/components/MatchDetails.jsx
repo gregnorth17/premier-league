@@ -1,6 +1,8 @@
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule'
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer'
 import { Box, Typography } from '@mui/material'
-import { Route, Routes } from 'react-router-dom'
+import { Link, Route, Routes } from 'react-router-dom'
 import Lineups from './Lineups'
 import MatchDetailsNav from './MatchDetailsNav'
 import Stats from './Stats'
@@ -69,58 +71,75 @@ const MatchDetails = ({fixture}) => {
 					)									
 	)
 
+	const checkCards = team => (
+		events.filter(({team: {name}, type}) => name === team && type === "Card")
+					.map(({player: {id, name}, time: {elapsed}}) => 
+						(
+							<Typography key={id} variant='body2'>
+								{name} {`${elapsed}'`}
+							</Typography>
+						)
+					)									
+	)
+
+
+
 	return (
 		fixture && 
 			<Box maxWidth='632px' m='0 auto'>
-				<Box>
+				<Box display='flex' m='1em 0'>
+					<Link to='/matches'><ArrowBackIcon/></Link>
 					<Typography>{homeTeam} vs {awayTeam}</Typography>
 				</Box>
-				<Box>
-				<Box sx={{
-					display: 'grid',
-					gridTemplateColumns: 'repeat(5, 1fr)',
-					gap: '1.25em .5em'
-				}}>
-					<Typography>{leagueName}</Typography>
-					<Typography>{new Date(date).toLocaleDateString()}</Typography>
-					<Typography align='center' gridColumn={5}>{matchStatus}</Typography>
-					<Box  sx={{
-						height: '48px',
-						width: '48px',
-						justifySelf: 'center',
-						alignSelf: 'center'
-					}}>
-						<img src={homeBadge} alt="Home team badge" />
-					</Box>
-					<Typography variant='h3' alignSelf='center' justifySelf='center'>{homeGoals}</Typography>
-					<Typography alignSelf='center' justifySelf='center'>-</Typography>
-					<Typography variant='h3' alignSelf='center' justifySelf='center'>{awayGoals}</Typography>
+				<Box mb='.5em'>
 					<Box sx={{
-						height: '48px',
-						width: '48px',
-						justifySelf: 'center',
-						alignSelf: 'center'
+						display: 'grid',
+						gridTemplateColumns: 'repeat(5, 1fr)',
+						gap: '1.25em .5em'
 					}}>
-						<img src={awayBadge} alt="Away team badge"/>
+						<Typography>{leagueName}</Typography>
+						<Typography>{new Date(date).toLocaleDateString()}</Typography>
+						<Typography align='center' gridColumn={5}>{matchStatus}</Typography>
+						<Box  sx={{
+							height: '48px',
+							width: '48px',
+							justifySelf: 'center',
+							alignSelf: 'center'
+						}}>
+							<img src={homeBadge} alt="Home team badge" />
+						</Box>
+						<Typography variant='h3' alignSelf='center' justifySelf='center'>{homeGoals}</Typography>
+						{/* <Typography alignSelf='center' justifySelf='center'>-</Typography> */}
+						<Box alignSelf='center' justifySelf='center'>
+							<HorizontalRuleIcon />
+						</Box>
+						<Typography variant='h3' alignSelf='center' justifySelf='center'>{awayGoals}</Typography>
+						<Box sx={{
+							height: '48px',
+							width: '48px',
+							justifySelf: 'center',
+							alignSelf: 'center'
+						}}>
+							<img src={awayBadge} alt="Away team badge"/>
+						</Box>
+						<Typography align='center'>{homeTeam}</Typography>
+						<Typography gridColumn={5}  align='center'>{awayTeam}</Typography>
+						<Box gridColumn={1}>
+							{checkGoals(homeTeam)}
+						</Box>
+						{homeGoals || awayGoals &&
+							<SportsSoccerIcon 
+								sx={{
+									gridColumn: 3,
+									justifySelf: 'center',
+									alignSelf: 'center'
+									}}
+							/>
+						}
+						<Box gridColumn={5}>
+							{checkGoals(awayTeam)}
+						</Box>
 					</Box>
-					<Typography align='center'>{homeTeam}</Typography>
-					<Typography gridColumn={5}  align='center'>{awayTeam}</Typography>
-					<Box gridColumn={1}>
-						{checkGoals(homeTeam)}
-					</Box>
-					{homeGoals || awayGoals &&
-						<SportsSoccerIcon 
-							sx={{
-								gridColumn: 3,
-								justifySelf: 'center',
-								alignSelf: 'center'
-								}}
-						/>
-					}
-					<Box gridColumn={5}>
-						{checkGoals(awayTeam)}
-					</Box>
-				</Box>
 				</Box>
 				<MatchDetailsNav />
 				<Routes>
