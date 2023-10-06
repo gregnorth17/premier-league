@@ -17,7 +17,6 @@ function App() {
 	const [localLeagueData, setLocalLeagueData] = useState(null)
 	const [teams, setTeams] = useState(null)
 	const [fixtures, setFixtures] = useState(null)
-	const [fixture, setFixture] = useState(null)
 	const year = new Date().getFullYear()
 	const [seasonYear, setSeasonYear] = useState(year)
 
@@ -53,7 +52,7 @@ function App() {
 					// localStorage.setItem('league', JSON.stringify(data.response[0]))
 					setLocalLeagueData(data.response[0])
 				})
-				fetch('https://v3.football.api-sports.io/fixtures?league=39&season=2022', {
+				fetch(`https://v3.football.api-sports.io/fixtures?league=39&season=${seasonYear}`, {
 					headers: {
 						"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357"
 					}
@@ -101,7 +100,7 @@ function App() {
 				<Route path='/' element={<YearContext.Provider value={{setSeasonYear}}><Home localLeagueData={localLeagueData} /></YearContext.Provider>} />
 				<Route path='/:id' element={<Team teams={teams} />} />
 				<Route path='/matches' element={<Matches fixtures={fixtures} />} />
-				<Route path='/matches/:fixtureId/*' element={<MatchDetails fixture={fixture} />} />
+				<Route path='/matches/:fixtureId/*' element={<MatchDetails fixture={fixture} setFixture={setFixture} />} />
 				<Route path='/table' element={<Home localLeagueData={localLeagueData} />} />
 		</Routes>
   )
