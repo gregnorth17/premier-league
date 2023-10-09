@@ -4,8 +4,8 @@ const Fixtures = ({children}) => {
 	return (
 		<Box sx={{
 			display: 'grid',
-			gridTemplateColumns: 'repeat(2, auto)',
-			maxWidth: '752px',
+			gridTemplateColumns: 'repeat(2, 322.5px)',
+			maxWidth: '650px',
 			margin: '0 auto'
 		}}>
 			{children}

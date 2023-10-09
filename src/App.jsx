@@ -100,7 +100,7 @@ function App() {
 				<Route path='/' element={<YearContext.Provider value={{setSeasonYear}}><Home localLeagueData={localLeagueData} /></YearContext.Provider>} />
 				<Route path='/:id' element={<Team teams={teams} />} />
 				<Route path='/matches' element={<Matches fixtures={fixtures} />} />
-				<Route path='/matches/:fixtureId/*' element={<MatchDetails fixture={fixture} setFixture={setFixture} />} />
+				<Route path='/matches/:fixtureId/*' element={<MatchDetails  />} />
 				<Route path='/table' element={<Home localLeagueData={localLeagueData} />} />
 		</Routes>
   )
