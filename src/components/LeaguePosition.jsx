@@ -3,54 +3,62 @@ import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { Link } from 'react-router-dom'
 const LeaguePosition = ({team}) => {
-	// console.log(team)
+	
+	const {
+		rank,
+		goalsDiff,
+		points,
+		description,
+		team: {logo, id, name},
+		all: {played, win, draw, lose, goals: {for: goalsFor, against}}
+	} = team
+
 	const promotionColor = {
 		"Promotion - Champions League (Group Stage: )" : "#4285F4",
 		"Promotion - Europa League (Group Stage: )" : "#FA7B17",
 		"Promotion - Europa Conference League (Qualification: )" : "#34A853",
 		"Relegation - Championship" : "#EA4335"
 	}
-	// const teamId = useParams()
-	// console.log(teamId)
-	const getLeftBorder = team => team.description ? `3px solid ${promotionColor[team.description]}` : '3px solid transparent'
+
+	const getLeftBorder = description => description ? `3px solid ${promotionColor[description]}` : '3px solid transparent'
 
 	return (
 		
-			<TableRow sx={{
-						borderLeft: `${getLeftBorder(team)}`
-			}}>
-				<TableCell sx={{
-						display: 'flex',
-						// alignItems: 'center',
-					}}>
-						
-						<Typography 
-							align='center' 
-							sx={{width: '25px'}}
-						>
-							{team.rank}
-						</Typography>
-						<Box sx={{
-						display: 'flex',
-						// alignSelf: 'center',
-						width: '25px',
-						// height: '40px'
-						margin: '0 .5em'
+		<TableRow sx={{
+					borderLeft: `${getLeftBorder(description)}`
+		}}>
+			<TableCell sx={{
+					display: 'flex',
+				}}>
+					
+					<Typography 
+						align='center' 
+						sx={{width: '25px'}}
+					>
+						{rank}
+					</Typography>
+					<Box sx={{
+					display: 'flex',
+					width: '25px',
+					margin: '0 .5em'
 
-						}} >
-							<img src={team.team.logo} />
-						</Box>
-						<Link to={`/${team.team.id}`}><Typography>{team.team.name}</Typography></Link>
-				</TableCell>
-				<TableCell align="center">{team.all.played}</TableCell>
-				<TableCell align="center">{team.all.win}</TableCell>
-				<TableCell align="center">{team.all.draw}</TableCell>
-				<TableCell align="center">{team.all.lose}</TableCell>
-				<TableCell align="center">{team.all.goals.for}</TableCell>
-				<TableCell align="center">{team.all.goals.against}</TableCell>
-				<TableCell align="center">{team.goalsDiff}</TableCell>
-				<TableCell align="center">{team.points}</TableCell>
-			</TableRow>
+					}} >
+						<img src={logo} />
+					</Box>
+					<Link style={{
+								textDecoration: 'none',
+								color: '#000'
+								}} to={`/${id}`}><Typography>{name}</Typography></Link>
+			</TableCell>
+			<TableCell align="center">{played}</TableCell>
+			<TableCell align="center">{win}</TableCell>
+			<TableCell align="center">{draw}</TableCell>
+			<TableCell align="center">{lose}</TableCell>
+			<TableCell align="center">{goalsFor}</TableCell>
+			<TableCell align="center">{against}</TableCell>
+			<TableCell align="center">{goalsDiff}</TableCell>
+			<TableCell align="center">{points}</TableCell>
+		</TableRow>
 	)
 }
 

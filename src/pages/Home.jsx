@@ -4,7 +4,6 @@ import { Box } from '@mui/material'
 import BasicSelect from '../components/BasicSelect'
 import LeaguePosition from '../components/LeaguePosition'
 import LeagueTable from "../components/LeagueTable"
-import NavBar from "../components/NavBar"
 import PromReg from '../components/PromReg'
 import PromRegData from '../components/PromRegData'
 import { competitions } from '../data'
@@ -18,9 +17,9 @@ const Home = ({localLeagueData}) => {
 		<>
 			{localLeagueData &&
 			<>
-					<NavBar logo={localLeagueData.league.logo} name={localLeagueData.league.name} />
-					<BasicSelect />
+					{/* <NavBar /> */}
 					<Box sx={{ maxWidth: '752px', marginX: 'auto'}}>
+					<BasicSelect />
 						<LeagueTable>
 							{localLeagueData.league.standings[0].map(team => <LeaguePosition key={team.team.id} team={team} />)}
 						</LeagueTable>

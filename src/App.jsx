@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import './App.css'
 // import TeamData from './components/TeamData'
 // import Club from './pages/Club'
+import Layout from './components/Layout'
 import MatchDetails from './components/MatchDetails'
 import Home from "./pages/Home"
 import Matches from './pages/Matches'
@@ -19,7 +20,8 @@ function App() {
 	const [fixtures, setFixtures] = useState(null)
 	const year = new Date().getFullYear()
 	const [seasonYear, setSeasonYear] = useState(year)
-
+	
+	console.log(localLeagueData)
 	console.log(seasonYear)
 	
 	
@@ -97,11 +99,13 @@ function App() {
 	
   return (
 		<Routes>
-				<Route path='/' element={<YearContext.Provider value={{setSeasonYear}}><Home localLeagueData={localLeagueData} /></YearContext.Provider>} />
+			<Route element={<Layout />}>
+				<Route path='/' element={<YearContext.Provider value={{setSeasonYear, seasonYear}}><Home localLeagueData={localLeagueData} /></YearContext.Provider>} />
 				<Route path='/:id' element={<Team teams={teams} />} />
 				<Route path='/matches' element={<Matches fixtures={fixtures} />} />
 				<Route path='/matches/:fixtureId/*' element={<MatchDetails  />} />
 				<Route path='/table' element={<Home localLeagueData={localLeagueData} />} />
+			</Route>
 		</Routes>
   )
 }

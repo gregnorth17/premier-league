@@ -42,9 +42,7 @@ const Fixture = ({fixture}) => {
 						display: 'grid',
 						gridTemplateColumns: '40px 135px auto 106px',
 						alignItems: 'center',
-						// maxWidth: '322.5px',
 						border: '1px solid rgb(60,64,67)',
-						// padding: '1em',
 						height: '7em',
 						padding: '1em 0 1em 1em'
 				}}>
