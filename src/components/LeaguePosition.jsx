@@ -21,19 +21,22 @@ const LeaguePosition = ({team}) => {
 	}
 
 	const getLeftBorder = description => description ? `3px solid ${promotionColor[description]}` : '3px solid transparent'
-
+		const style = {
+		color: '#bdc1c6'
+	}
 	return (
-		
 		<TableRow sx={{
 					borderLeft: `${getLeftBorder(description)}`
 		}}>
 			<TableCell sx={{
 					display: 'flex',
 				}}>
-					
 					<Typography 
 						align='center' 
-						sx={{width: '25px'}}
+						sx={{
+							width: '25px',
+							color: '#bdc1c6'
+						}}
 					>
 						{rank}
 					</Typography>
@@ -47,17 +50,18 @@ const LeaguePosition = ({team}) => {
 					</Box>
 					<Link style={{
 								textDecoration: 'none',
-								color: '#000'
+								// color: '#000'
+								color: '#bdc1c6'
 								}} to={`/${id}`}><Typography>{name}</Typography></Link>
 			</TableCell>
-			<TableCell align="center">{played}</TableCell>
-			<TableCell align="center">{win}</TableCell>
-			<TableCell align="center">{draw}</TableCell>
-			<TableCell align="center">{lose}</TableCell>
-			<TableCell align="center">{goalsFor}</TableCell>
-			<TableCell align="center">{against}</TableCell>
-			<TableCell align="center">{goalsDiff}</TableCell>
-			<TableCell align="center">{points}</TableCell>
+			<TableCell sx={style} align="center">{played}</TableCell>
+			<TableCell sx={style} align="center">{win}</TableCell>
+			<TableCell sx={style} align="center">{draw}</TableCell>
+			<TableCell sx={style} align="center">{lose}</TableCell>
+			<TableCell sx={style} align="center">{goalsFor}</TableCell>
+			<TableCell sx={style} align="center">{against}</TableCell>
+			<TableCell sx={style} align="center">{goalsDiff}</TableCell>
+			<TableCell sx={style} align="center">{points}</TableCell>
 		</TableRow>
 	)
 }

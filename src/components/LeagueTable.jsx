@@ -6,38 +6,34 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
 const LeagueTable = ({children}) => {
+
+	const cellStyle = {
+		color: '#bdc1c6',
+		// borderBottom: '1px solid red'
+	}
+
+	const rowStyle = {
+		borderBottom: '1px solid red'
+	}
+
 	return (
 		<>
 			<TableContainer>
-      <Table  sx={{ marginX: 'auto', color: '#fff'}} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Club</TableCell>
-            <TableCell align="center">MP</TableCell>
-            <TableCell align="center">W</TableCell>
-            <TableCell align="center">D</TableCell>
-            <TableCell align="center">L</TableCell>
-						<TableCell align="center">GF</TableCell>
-            <TableCell align="center">GA</TableCell>
-            <TableCell align="center">GD</TableCell>
-            <TableCell align="center">Pts</TableCell>
+      <Table  sx={{ marginX: 'auto'}} aria-label="simple table">
+        <TableHead >
+          <TableRow >
+            <TableCell sx={cellStyle}>Club</TableCell>
+            <TableCell sx={cellStyle} align="center">MP</TableCell>
+            <TableCell sx={cellStyle} align="center">W</TableCell>
+            <TableCell sx={cellStyle} align="center">D</TableCell>
+            <TableCell sx={cellStyle} align="center">L</TableCell>
+						<TableCell sx={cellStyle} align="center">GF</TableCell>
+            <TableCell sx={cellStyle} align="center">GA</TableCell>
+            <TableCell sx={cellStyle} align="center">GD</TableCell>
+            <TableCell sx={cellStyle} align="center">Pts</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-            </TableRow>
-          ))} */}
 					{children}
         </TableBody>
       </Table>

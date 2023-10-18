@@ -16,7 +16,7 @@ const BasicSelect = () => {
   }
 
 	return (
-    <Box mt={2} sx={{ maxWidth: 120 }}>
+    <Box mt={2} sx={{maxWidth: 120}}>
       <FormControl  fullWidth>
         <InputLabel color='primary' id="demo-simple-select-label">Season</InputLabel>
         <Select

@@ -36,8 +36,8 @@ const Fixture = ({fixture}) => {
 			<Link style={{
 				textDecoration: 'none',
 				color: '#9aa0a6',
-				background: 'rgb(32,33,36)'
-				}} to={`/matches/${id}`}>
+				background: '#202124',
+				}} to={`${id}`}>
 				<Box sx={{
 						display: 'grid',
 						gridTemplateColumns: '40px 135px auto 106px',

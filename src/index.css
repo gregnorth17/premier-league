@@ -6,7 +6,7 @@
   /* color-scheme: light dark; */
   /* color: rgba(255, 255, 255, 0.87);
   background-color: #242424; */
-
+	background: #202124;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -17,6 +17,10 @@
 
 img {
 	max-width: 100%;
+}
+
+body {
+	background: rgb(32, 33, 36);
 }
 
 

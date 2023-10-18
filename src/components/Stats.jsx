@@ -21,9 +21,9 @@ const Stats = ({stats}) => {
 
 		return (
 			<>
-				<Typography variant='body2' align='center'>{getStatValue(value)}</Typography>
-				<Typography variant='body2' align='center' gridColumn={3} gutterBottom>{type}</Typography>
-				<Typography variant='body2' align='center' gridColumn={5}>{getStatValue(awayStats[index].value)}</Typography>
+				<Typography color='#bdc1c6' variant='body2' align='center'>{getStatValue(value)}</Typography>
+				<Typography color='#bdc1c6' variant='body2' align='center' gridColumn={3} gutterBottom>{type}</Typography>
+				<Typography color='#bdc1c6' variant='body2' align='center' gridColumn={5}>{getStatValue(awayStats[index].value)}</Typography>
 			</>
 		)
 	})
@@ -37,7 +37,7 @@ const Stats = ({stats}) => {
 			<Box justifySelf='center'  width='24px' height='24px'>
 				<img src={homeBadge}/>
 			</Box>
-			<Typography align='center' gridColumn={3} component='h2' variant='body1' gutterBottom>TEAM STATS</Typography>
+			<Typography color='#bdc1c6' align='center' gridColumn={3} component='h2' variant='body1' gutterBottom>TEAM STATS</Typography>
 			<Box justifySelf='center' gridColumn={5} width='24px' height='24px'>
 				<img src={awayBadge}/>
 			</Box>

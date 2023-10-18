@@ -42,30 +42,30 @@ function App() {
 	// 		} 
 			// getLeagueData()
 			// console.log(leagueData)
-			useEffect(() => {
-				fetch(`https://v3.football.api-sports.io/standings?league=39&season=${seasonYear}`, {
-						headers: {
-							"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357",
-						}
-				})
-				.then(response => response.json())
-				.then(data => {
-					// console.log(data.response[0])
-					// localStorage.setItem('league', JSON.stringify(data.response[0]))
-					setLocalLeagueData(data.response[0])
-				})
-				fetch(`https://v3.football.api-sports.io/fixtures?league=39&season=${seasonYear}`, {
-					headers: {
-						"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357"
-					}
-				})
-				.then(response => response.json())
-				.then(data => {
-					console.log(data)
-					// localStorage.setItem('fixtures', JSON.stringify(data.response))
-					setFixtures(data.response)
-				})
-			}, [seasonYear])
+			// useEffect(() => {
+			// 	fetch(`https://v3.football.api-sports.io/standings?league=39&season=${seasonYear}`, {
+			// 			headers: {
+			// 				"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357",
+			// 			}
+			// 	})
+			// 	.then(response => response.json())
+			// 	.then(data => {
+			// 		// console.log(data.response[0])
+			// 		// localStorage.setItem('league', JSON.stringify(data.response[0]))
+			// 		setLocalLeagueData(data.response[0])
+			// 	})
+			// 	fetch(`https://v3.football.api-sports.io/fixtures?league=39&season=${seasonYear}`, {
+			// 		headers: {
+			// 			"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357"
+			// 		}
+			// 	})
+			// 	.then(response => response.json())
+			// 	.then(data => {
+			// 		console.log(data)
+			// 		// localStorage.setItem('fixtures', JSON.stringify(data.response))
+			// 		setFixtures(data.response)
+			// 	})
+			// }, [seasonYear])
 			
 			// fetch('https://v3.football.api-sports.io/teams?league=39&season=2022', {
 			// 	headers: {
@@ -80,32 +80,32 @@ function App() {
 				
 		
 
-		// useEffect(() => {
-		// 	if(window.localStorage) {
+		useEffect(() => {
+			if(window.localStorage) {
 
-		// 		const league = window.localStorage.getItem('league')
-		// 		league !== null ? setLocalLeagueData(JSON.parse(league)) : null
+				const league = window.localStorage.getItem('league')
+				league !== null ? setLocalLeagueData(JSON.parse(league)) : null
 
-		// 		// const teams = window.localStorage.getItem('teams')
-		// 		// teams !== null ? setTeams(JSON.parse(teams)) : null
+				// const teams = window.localStorage.getItem('teams')
+				// teams !== null ? setTeams(JSON.parse(teams)) : null
 
-		// 		const fixtures = window.localStorage.getItem('fixtures')
-		// 		fixtures !== null ? setFixtures(JSON.parse(fixtures)) : null
+				const fixtures = window.localStorage.getItem('fixtures')
+				fixtures !== null ? setFixtures(JSON.parse(fixtures)) : null
 
-		// 		// const fixture = window.localStorage.getItem('fixture')
-		// 		// setFixture(JSON.parse(fixture))
-		// 	}
-		// }, [])
+				// const fixture = window.localStorage.getItem('fixture')
+				// setFixture(JSON.parse(fixture))
+			}
+		}, [])
 	
   return (
 		<Routes>
-			<Route element={<Layout />}>
-				<Route path='/' element={<YearContext.Provider value={{setSeasonYear, seasonYear}}><Home localLeagueData={localLeagueData} /></YearContext.Provider>} />
-				<Route path='/:id' element={<Team teams={teams} />} />
-				<Route path='/matches' element={<Matches fixtures={fixtures} />} />
-				<Route path='/matches/:fixtureId/*' element={<MatchDetails  />} />
+			<Route path='/' element={<Layout />}>
+				<Route index element={<YearContext.Provider value={{setSeasonYear, seasonYear}}><Home localLeagueData={localLeagueData} /></YearContext.Provider>} />
+				<Route path=':id' element={<Team teams={teams} />} />
+				<Route path='matches' element={<Matches fixtures={fixtures} />} />
 				<Route path='/table' element={<Home localLeagueData={localLeagueData} />} />
 			</Route>
+			<Route path='matches/:fixtureId/*' element={<MatchDetails  />} />
 		</Routes>
   )
 }
