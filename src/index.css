@@ -20,17 +20,14 @@ img {
 }
 
 body {
-	background: rgb(32, 33, 36);
-}
-
-.nav-link {
-	text-decoration: 'none';
-	color: '#9aa0a6';
-	text-transform: 'uppercase';
-	padding: '1em 1.5em';
+	background: #171717;
 }
 
 .nav-link:hover {
+	background-color: #522763;
+}
+
+.match-details-nav-link:hover {
 	background: #171717;
 }
 

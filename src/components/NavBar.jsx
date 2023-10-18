@@ -1,17 +1,60 @@
-import { Box, Typography } from '@mui/material';
-import AppBar from '@mui/material/AppBar';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import { NavLink } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import { Box, Typography } from '@mui/material'
+import { Link, NavLink } from 'react-router-dom'
+import logo from '../assets/leaguelogo.png'
 
 const NavBar = () => {
 	
-	const navItems = ['matches', 'news', 'table', 'stats', 'players']
+	// const navItems = ['matches', 'news', 'table', 'stats', 'players']
+
+	const style = {
+		textDecoration: 'none',
+		color: '#9aa0a6',
+		textTransform: 'uppercase',
+		padding: '1em 1.5em',
+		borderBottom: '3px solid transparent'
+	}
+
+	const activeStyle = {
+		textDecoration: 'none',
+		color: '#fff',
+		textTransform: 'uppercase',
+		padding: '1em 1.5em',
+		borderBottom: '3px solid #fff',
+	}
+
+	const getStyles = isActive => isActive ? activeStyle : style
+
 
   return (
+		<header>
+			<Link to='/' style={{display: 'flex', alignItems: 'center', textDecoration: 'none', background: '#3F1052', padding: '.75em 0 0 1.5em'}}>
+				<Box sx={{
+								borderRadius: '50%',
+								width: '35px',
+								height: '35px',
+								// backgroundColor: '#FFFFFF',
+								mr: '.625em'
+							}}>
+								<img  src={logo} alt="Premier League logo"/>
+				</Box>
+				<Typography   color='#ffffff'>Premier League</Typography>
+			</Link>
+			<nav style={{ display: 'flex', justifyContent: 'center',  background: '#3F1052', marginBottom: '.5em'}}>
+					<NavLink to='matches' className='nav-link' style={({isActive}) => getStyles(isActive)} >
+						matches
+					</NavLink>
+					<NavLink to='table' className='nav-link' style={({isActive}) => isActive? activeStyle : style}>
+						table
+					</NavLink>
+					<NavLink to='stats' className='nav-link' style={({isActive}) => isActive? activeStyle : style}>
+						stats
+					</NavLink>
+					<NavLink to='players' className='nav-link' style={({isActive}) => isActive? activeStyle : style}>
+						players
+					</NavLink>
+			</nav>
+		</header>
+	)
 			// <header>
       //       <Link to="/">
 			// 				<Box sx={{
@@ -66,72 +109,72 @@ const NavBar = () => {
 							
 			// 			</Box>
       //   </header>
-		<AppBar sx={{ background: '#3F1052', margin:'0 auto 0.25em'}} position="static">
-    <Box sx={{maxWidth: '500px',
-							display: 'flex',
-							flexDirection: 'column',
-							alignItems: 'center'
-						}}>
-					<Box sx={{
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'flex-start',
-						// // padding: '1em 0 0 1em'
-						// maxWidth: '50%'
-					}}>
-						<Box sx={{
-							borderRadius: '50%',
-							width: '35px',
-							height: '35px',
-							backgroundColor: '#FFFFFF',
-							mr: '.625em'
-						}}>
-							<img  src={logo} alt="Premier League logo"/>
-						</Box>
-						<Typography variant="body1" component="h1" >
-							Premier League
-						</Typography>
-					</Box>
-				<Box sx={{ 
-					display: 'flex', 
-					justifyContent: 'center'
-				}}>
-					<List sx={{ 
-						display: 'flex',
-						maxWidth: '752px',
-						padding: 0
-						}}
-					disablePadding
-					>
-					{navItems.map((item) => (
-						<ListItem sx={{
-							padding: 0,
-							paddingLeft: ".75em",
+	// 	<AppBar sx={{ background: '#3F1052', margin:'0 auto 0.25em'}} position="static">
+  //   <Box sx={{maxWidth: '500px',
+	// 						display: 'flex',
+	// 						flexDirection: 'column',
+	// 						alignItems: 'center'
+	// 					}}>
+	// 				<Box sx={{
+	// 					display: 'flex',
+	// 					alignItems: 'center',
+	// 					justifyContent: 'flex-start',
+	// 					// // padding: '1em 0 0 1em'
+	// 					// maxWidth: '50%'
+	// 				}}>
+	// 					<Box sx={{
+	// 						borderRadius: '50%',
+	// 						width: '35px',
+	// 						height: '35px',
+	// 						backgroundColor: '#FFFFFF',
+	// 						mr: '.625em'
+	// 					}}>
+	// 						<img  src={logo} alt="Premier League logo"/>
+	// 					</Box>
+	// 					<Typography variant="body1" component="h1" >
+	// 						Premier League
+	// 					</Typography>
+	// 				</Box>
+	// 			<Box sx={{ 
+	// 				display: 'flex', 
+	// 				justifyContent: 'center'
+	// 			}}>
+	// 				<List sx={{ 
+	// 					display: 'flex',
+	// 					maxWidth: '752px',
+	// 					padding: 0
+	// 					}}
+	// 				disablePadding
+	// 				>
+	// 				{navItems.map((item) => (
+	// 					<ListItem sx={{
+	// 						padding: 0,
+	// 						paddingLeft: ".75em",
 							
-						}} 
-						key={item} 
-						>
-							<ListItemButton sx={{ 
-								textAlign: 'center',
+	// 					}} 
+	// 					key={item} 
+	// 					>
+	// 						<ListItemButton sx={{ 
+	// 							textAlign: 'center',
 								
-								// textTransform: 'uppercase',
-								padding: '.75em 0',
-								}}
+	// 							// textTransform: 'uppercase',
+	// 							padding: '.75em 0',
+	// 							}}
 								
-							>
-								<NavLink style={{
-									textDecoration: 'none',
-									color: '#FFFFFF',
-									// textTransform: 'uppercase'
-									}} to={`/${item}`}><ListItemText primary={item}/></NavLink>
-							</ListItemButton>
-						</ListItem>
-					))}
-					</List>
-				</Box>
-    </Box>
-		</AppBar>
-  )
+	// 						>
+	// 							<NavLink style={{
+	// 								textDecoration: 'none',
+	// 								color: '#FFFFFF',
+	// 								// textTransform: 'uppercase'
+	// 								}} to={`/${item}`}><ListItemText primary={item}/></NavLink>
+	// 						</ListItemButton>
+	// 					</ListItem>
+	// 				))}
+	// 				</List>
+	// 			</Box>
+  //   </Box>
+	// 	</AppBar>
+  // )
 }
 
 // import AdbIcon from '@mui/icons-material/Adb';
