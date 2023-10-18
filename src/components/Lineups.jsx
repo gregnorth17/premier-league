@@ -28,7 +28,7 @@ const Lineups = ({lineups}) => {
 						</Box>
 					</Box>
 					<Box>
-						<Typography color='#e8eaed' component='h3' variant='subtitle2' gutterBottom>MANAGER</Typography>
+						<Typography  color='#e8eaed' component='h3' variant='subtitle2' gutterBottom>MANAGER</Typography>
 						<Typography variant='body2'  ml='1em' gutterBottom>{managerName}</Typography>
 						<Typography color='#e8eaed' variant='subtitle2' gutterBottom>STARTING XI</Typography>
 						{startXI.map(({player: {id, name, number}}) => <Typography variant='body2' ml='1em' gutterBottom key={id}>{number} {name}</Typography>)}

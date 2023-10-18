@@ -11,10 +11,18 @@ const MatchDetailsNav = () => {
 		color: '#9aa0a6',
 		textTransform: 'uppercase',
 		padding: '1em 1.5em',
-		'&:hover': {
-			background: '#171717',
-		}
+		borderBottom: '3px solid transparent'
 	}
+
+	const activeStyle = {
+		textDecoration: 'none',
+		color: '#fff',
+		textTransform: 'uppercase',
+		padding: '1em 1.5em',
+		borderBottom: '3px solid #fff',
+	}
+
+	const getStyles = isActive => isActive ? activeStyle : style
 
   return (
     // <Box sx={{ flexGrow: 1 }}>
@@ -65,11 +73,11 @@ const MatchDetailsNav = () => {
 		// 		</Box>
     //   </AppBar>
     // </Box>
-		<nav style={{display: 'flex', justifyContent: 'center', background: '#303134'}}>
-			<NavLink style={style} to='lineups'>
+		<nav style={{display: 'flex', justifyContent: 'center', background: '#303134', borderTop: '.5px solid #9aa0a6'}}>
+			<NavLink className='nav-link' style={({isActive}) => getStyles(isActive)} to='lineups'>
 				lineup
 			</NavLink>
-			<NavLink sx={{'&:hover': {textDecoration: 'underline'}}} style={style} to='.'>
+			<NavLink className='nav-link' style={({isActive}) => getStyles(isActive)} end  to='.'>
 				stats
 			</NavLink>
 		</nav>
