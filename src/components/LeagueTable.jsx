@@ -9,18 +9,14 @@ const LeagueTable = ({children}) => {
 
 	const cellStyle = {
 		color: '#bdc1c6',
-		// borderBottom: '1px solid red'
-	}
-
-	const rowStyle = {
-		borderBottom: '1px solid red'
+		borderBottom: '1px solid #3c4043'
 	}
 
 	return (
 		<>
 			<TableContainer>
-      <Table  sx={{ marginX: 'auto'}} aria-label="simple table">
-        <TableHead >
+      <Table  sx={{ marginX: 'auto', background: '#202124'}} aria-label="simple table">
+        <TableHead>
           <TableRow >
             <TableCell sx={cellStyle}>Club</TableCell>
             <TableCell sx={cellStyle} align="center">MP</TableCell>

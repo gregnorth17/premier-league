@@ -21,21 +21,30 @@ const LeaguePosition = ({team}) => {
 	}
 
 	const getLeftBorder = description => description ? `3px solid ${promotionColor[description]}` : '3px solid transparent'
-		const style = {
-		color: '#bdc1c6'
+	
+	const style = {
+		color: '#bdc1c6', 
+		borderBottom: `1px solid #3c4043`,
+		fontSize: '.75rem',
+		fontWeight: 'bold'
 	}
+
 	return (
 		<TableRow sx={{
 					borderLeft: `${getLeftBorder(description)}`
 		}}>
 			<TableCell sx={{
 					display: 'flex',
+					alignItems: 'center',
+					borderBottom: '1px solid #3c4043'
 				}}>
 					<Typography 
 						align='center' 
 						sx={{
 							width: '25px',
-							color: '#bdc1c6'
+							color: '#bdc1c6',
+							fontSize: '.75rem',
+							fontWeight: 'bold'
 						}}
 					>
 						{rank}
@@ -50,9 +59,8 @@ const LeaguePosition = ({team}) => {
 					</Box>
 					<Link style={{
 								textDecoration: 'none',
-								// color: '#000'
 								color: '#bdc1c6'
-								}} to={`/${id}`}><Typography>{name}</Typography></Link>
+								}} to={`/${id}`}><Typography sx={{fontSize: '14px'}}>{name}</Typography></Link>
 			</TableCell>
 			<TableCell sx={style} align="center">{played}</TableCell>
 			<TableCell sx={style} align="center">{win}</TableCell>
