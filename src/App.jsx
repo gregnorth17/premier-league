@@ -5,9 +5,9 @@ import './App.css'
 // import Club from './pages/Club'
 import Layout from './components/Layout'
 import MatchDetails from './components/MatchDetails'
+import SeasonStats from './components/SeasonStats'
 import Home from "./pages/Home"
 import Matches from './pages/Matches'
-import Team from './pages/Team'
 
 const YearContext = createContext()
 
@@ -16,10 +16,11 @@ export { YearContext }
 function App() {
 	// const [leagueData, setLeagueData] = useState(null)
 	const [localLeagueData, setLocalLeagueData] = useState(null)
-	const [teams, setTeams] = useState(null)
+	// const [teams, setTeams] = useState(null)
 	const [fixtures, setFixtures] = useState(null)
 	const year = new Date().getFullYear()
 	const [seasonYear, setSeasonYear] = useState(year)
+	const [topScorers, setTopScorers] = useState(null)
 	
 	console.log(localLeagueData)
 	console.log(seasonYear)
@@ -77,7 +78,8 @@ function App() {
 			// 	console.log(data)
 			// 	localStorage.setItem('teams', JSON.stringify(data.response))
 			// })
-				
+
+		
 		
 
 		useEffect(() => {
@@ -94,19 +96,31 @@ function App() {
 
 				// const fixture = window.localStorage.getItem('fixture')
 				// setFixture(JSON.parse(fixture))
+				fetch(`https://v3.football.api-sports.io/players/topscorers?league=39&season=${seasonYear}`, {
+					headers: {
+					"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357"
+					}
+				})
+				.then(resp => resp.json())
+				.then(data =>{
+					console.log(data)
+					setTopScorers(data.response)
+				})
 			}
-		}, [])
+		}, [seasonYear])
 	
   return (
-		<Routes>
-			<Route path='/' element={<Layout />}>
-				<Route index element={<YearContext.Provider value={{setSeasonYear, seasonYear}}><Home localLeagueData={localLeagueData} /></YearContext.Provider>} />
-				<Route path=':id' element={<Team teams={teams} />} />
-				<Route path='matches' element={<Matches fixtures={fixtures} />} />
-				{/* <Route path='/table' element={<Home localLeagueData={localLeagueData} />} /> */}
-			</Route>
-			<Route path='matches/:fixtureId/*' element={<MatchDetails  />} />
-		</Routes>
+			
+				<Routes>
+					<Route path='/' element={<Layout />}>
+						<Route index element={<YearContext.Provider value={{setSeasonYear, seasonYear}}><Home localLeagueData={localLeagueData} /></YearContext.Provider>} />
+						{/* <Route path=':id' element={<Team teams={teams} />} /> */}
+						<Route path='matches' element={<Matches fixtures={fixtures} />} />
+						<Route path='seasonstats' element={<SeasonStats topScorers={topScorers} />} />
+					</Route>
+					<Route path='matches/:fixtureId/*' element={<MatchDetails  />} />
+				</Routes>
+			
   )
 }
 export default App

@@ -8,14 +8,16 @@ import TableRow from '@mui/material/TableRow';
 const LeagueTable = ({children}) => {
 
 	const cellStyle = {
-		color: '#bdc1c6',
-		borderBottom: '1px solid #3c4043'
+		color: '#9aa0a6',
+		borderBottom: '1px solid #3c4043',
+		padding: '.5em',
+		fontSize: '.75rem'
 	}
 
 	return (
 		<>
 			<TableContainer>
-      <Table  sx={{ marginX: 'auto', background: '#202124'}} aria-label="simple table">
+      <Table  sx={{ margin: '0 auto', background: '#202124'}} aria-label="simple table">
         <TableHead>
           <TableRow >
             <TableCell sx={cellStyle}>Club</TableCell>

@@ -17,7 +17,7 @@ const BasicSelect = () => {
 
 	return (
 		<Box sx={{background: '#303134', padding: '.25em 0', borderBottom: '1px solid #3c4043'}}>
-			<Box p={1} sx={{maxWidth: 120}}>
+			<Box sx={{maxWidth: 120, padding: '.5em 0 .5em 1.25em'}}>
 				<FormControl variant='standard' fullWidth>
 					<InputLabel sx={{color: '#9aa0a6'}}  id="demo-simple-select-label">Season</InputLabel>
 					<Select
@@ -26,7 +26,7 @@ const BasicSelect = () => {
 						value={seasonYear}
 						label="Age"
 						onChange={handleChange}
-						sx={{fontWeight: 'bold', color: '#4487f6', }}
+						sx={{fontWeight: 'bold', color: '#4487f6'}}
 					>
 						<MenuItem value={2023}>2023-24</MenuItem>
 						<MenuItem value={2022}>2022-23</MenuItem>

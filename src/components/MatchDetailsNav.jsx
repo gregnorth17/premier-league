@@ -6,17 +6,23 @@ const MatchDetailsNav = () => {
 		textDecoration: 'none',
 		color: '#9aa0a6',
 		textTransform: 'uppercase',
-		padding: '1em 1.5em',
-		borderBottom: '3px solid transparent'
+		padding: '.875em 1.5em',
+		borderBottom: '3px solid transparent',
+		fontSize: '.75rem',
+		fontWeight: 'bold',
+		letterSpaceing: 0
 	}
 
 	const activeStyle = {
 		textDecoration: 'none',
 		color: '#fff',
 		textTransform: 'uppercase',
-		padding: '1em 1.5em',
+		padding: '.875em 1.5em',
 		borderBottom: '3px solid #fff',
-		background: '#171717'
+		background: '#171717',
+		fontSize: '.75rem',
+		fontWeight: 'bold',
+		letterSpaceing: 0
 	}
 
 	const getStyles = isActive => isActive ? activeStyle : style

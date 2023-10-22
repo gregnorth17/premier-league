@@ -25,42 +25,39 @@ const LeaguePosition = ({team}) => {
 	const style = {
 		color: '#bdc1c6', 
 		borderBottom: `1px solid #3c4043`,
-		fontSize: '.75rem',
-		fontWeight: 'bold'
+		fontSize: '.875rem',
+		fontWeight: 'bold',
+		padding: '.5em'
 	}
 
 	return (
 		<TableRow sx={{
 					borderLeft: `${getLeftBorder(description)}`
 		}}>
-			<TableCell sx={{
-					display: 'flex',
-					alignItems: 'center',
-					borderBottom: '1px solid #3c4043'
-				}}>
+			<TableCell sx={[style, {display: 'flex', alignItems: 'center'}]}>
 					<Typography 
 						align='center' 
 						sx={{
 							width: '25px',
 							color: '#bdc1c6',
-							fontSize: '.75rem',
+							fontSize: '.875rem',
 							fontWeight: 'bold'
 						}}
 					>
 						{rank}
 					</Typography>
-					<Box sx={{
+					<Box 
+					sx={{
 					display: 'flex',
 					width: '25px',
-					margin: '0 .5em'
-
-					}} >
+					margin: '0 .5em'}} 
+					>
 						<img src={logo} />
 					</Box>
 					<Link style={{
 								textDecoration: 'none',
 								color: '#bdc1c6'
-								}} to={`/${id}`}><Typography sx={{fontSize: '14px'}}>{name}</Typography></Link>
+					}} to={`/${id}`}><Typography sx={{fontSize: '14px'}}>{name}</Typography></Link>
 			</TableCell>
 			<TableCell sx={style} align="center">{played}</TableCell>
 			<TableCell sx={style} align="center">{win}</TableCell>

@@ -11,7 +11,6 @@ const NavBar = () => {
 		padding: '1em 1.5em',
 		borderBottom: '3px solid transparent',
 		fontSize: '.875rem',
-		// width: '134px',
 		textAlign: 'center'
 	}
 
@@ -22,8 +21,9 @@ const NavBar = () => {
 		padding: '1em 1.5em',
 		borderBottom: '3px solid #fff',
 		fontSize: '.875rem',
-		// width: '134px',
-		textAlign: 'center'
+		textAlign: 'center',
+		background: '#522763'
+
 	}
 
 	const getStyles = isActive => isActive ? activeStyle : style
@@ -49,13 +49,13 @@ const NavBar = () => {
 					<NavLink to='matches' className='nav-link' style={({isActive}) => getStyles(isActive)} >
 						matches
 					</NavLink>
-					<NavLink to='.' className='nav-link' style={({isActive}) => isActive? activeStyle : style}>
+					<NavLink to='.' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
 						table
 					</NavLink>
-					<NavLink to='stats' className='nav-link' style={({isActive}) => isActive? activeStyle : style}>
+					<NavLink to='seasonstats' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
 						stats
 					</NavLink>
-					<NavLink to='players' className='nav-link' style={({isActive}) => isActive? activeStyle : style}>
+					<NavLink to='players' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
 						players
 					</NavLink>
 			</nav>
