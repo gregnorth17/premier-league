@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 
 
 const Fixture = ({fixture}) => {
-	console.log(fixture)
+	
 	try{
+
 		const {
 			fixture: {id},
 			teams: {
@@ -36,16 +37,24 @@ const Fixture = ({fixture}) => {
 			<Link style={{
 				textDecoration: 'none',
 				color: '#9aa0a6',
-				background: '#202124',
-				}} to={`${id}`}>
+				background: '#202124'
+				}}
+				to={`${id}`}>
 				<Box sx={{
 						display: 'grid',
 						gridTemplateColumns: '40px 135px auto 106px',
 						alignItems: 'center',
-						border: '1px solid rgb(60,64,67)',
+						borderBottom: '1px solid rgb(60,64,67)',
 						height: '7em',
-						padding: '1em 0 1em 1em'
-				}}>
+						padding: '1em 0 1em 1em',
+						'&:nth-child(1)': {
+							borderRight: '1px solid rgb(60,64,67)'
+						},
+						'&:hover': {
+						background: '#424548'
+						}
+				}}
+				>
 					<Box sx={{
 						width: '24px',
 						height: '24px',

@@ -93,21 +93,27 @@ function App() {
 
 				const fixtures = window.localStorage.getItem('fixtures')
 				fixtures !== null ? setFixtures(JSON.parse(fixtures)) : null
-
+				
 				// const fixture = window.localStorage.getItem('fixture')
 				// setFixture(JSON.parse(fixture))
-				fetch(`https://v3.football.api-sports.io/players/topscorers?league=39&season=${seasonYear}`, {
-					headers: {
-					"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357"
-					}
-				})
-				.then(resp => resp.json())
-				.then(data =>{
-					console.log(data)
-					setTopScorers(data.response)
-				})
+		// 		fetch(`https://v3.football.api-sports.io/players/topscorers?league=39&season=${seasonYear}`, {
+		// 			headers: {
+		// 			"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357"
+		// 			}
+		// 		})
+		// 		.then(resp => resp.json())
+		// 		.then(data =>{
+		// 			console.log(data)
+		// 			setTopScorers(data.response)
+		// 			window.localStorage.setItem('topScorers', JSON.stringify(data.response))
+		// 		})
+		// 	}
+		// 	// const topScorers = window.localStorage.
+				const topScorers = window.localStorage.getItem('topScorers')
+				topScorers !== null ? setTopScorers(JSON.parse(topScorers)) : null
 			}
 		}, [seasonYear])
+			
 	
   return (
 			

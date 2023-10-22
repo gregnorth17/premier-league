@@ -32,7 +32,10 @@ const LeaguePosition = ({team}) => {
 
 	return (
 		<TableRow sx={{
-					borderLeft: `${getLeftBorder(description)}`
+					borderLeft: `${getLeftBorder(description)}`,
+					'&:hover': {
+						background: '#424548'
+					}
 		}}>
 			<TableCell sx={[style, {display: 'flex', alignItems: 'center'}]}>
 					<Typography 
