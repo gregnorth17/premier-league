@@ -20,7 +20,8 @@ function App() {
 	const [fixtures, setFixtures] = useState(null)
 	const year = new Date().getFullYear()
 	const [seasonYear, setSeasonYear] = useState(year)
-	const [topScorers, setTopScorers] = useState(null)
+	// const [topScorers, setTopScorers] = useState(null)
+	const [seasonStats, setSeasonStats] = useState(null)
 	
 	console.log(localLeagueData)
 	console.log(seasonYear)
@@ -109,12 +110,33 @@ function App() {
 		// 		})
 		// 	}
 		// 	// const topScorers = window.localStorage.
-				const topScorers = window.localStorage.getItem('topScorers')
-				topScorers !== null ? setTopScorers(JSON.parse(topScorers)) : null
+
+		// const headers = {
+		// 	headers: {
+		// 			"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357"
+		// 	}
+		// }
+
+		// const topScorersUrl = fetch(`https://v3.football.api-sports.io/players/topscorers?league=39&season=${seasonYear}`, headers).then(resp => resp.json())
+		// const assistsUrl = fetch(`https://v3.football.api-sports.io/players/topassists?league=39&season=${seasonYear}`, headers).then(resp => resp.json())
+		// const yellowCardUrl = fetch(`https://v3.football.api-sports.io/players/topyellowcards?league=39&season=${seasonYear}`, headers).then(resp => resp.json())
+		// const redCardUrl = fetch(`https://v3.football.api-sports.io/players/topredcards?league=39&season=${seasonYear}`, headers).then(resp => resp.json())
+
+		// Promise.all([topScorersUrl, assistsUrl, yellowCardUrl, redCardUrl])
+		// 	.then(data => {
+		// 		console.log(data)
+		// 		const seasonData = data.map(data => [...data.response])
+		// 		localStorage.setItem(`seasonStats${seasonYear}`, JSON.stringify(seasonData))
+		// 		// setSeasonStats(data)
+		// 	})
+				// const topScorers = window.localStorage.getItem('topScorers')
+				// topScorers !== null ? setTopScorers(JSON.parse(topScorers)) : null
+				const seasonStats = localStorage.getItem(`seasonStats${seasonYear}`)
+				seasonStats !== null ? setSeasonStats(JSON.parse(seasonStats)) : null
 			}
 		}, [seasonYear])
 			
-	
+		console.log(seasonStats)
   return (
 			
 				<Routes>
@@ -122,7 +144,7 @@ function App() {
 						<Route index element={<YearContext.Provider value={{setSeasonYear, seasonYear}}><Home localLeagueData={localLeagueData} /></YearContext.Provider>} />
 						{/* <Route path=':id' element={<Team teams={teams} />} /> */}
 						<Route path='matches' element={<Matches fixtures={fixtures} />} />
-						<Route path='seasonstats' element={<SeasonStats topScorers={topScorers} />} />
+						<Route path='seasonstats' element={<SeasonStats seasonStats={seasonStats} />} />
 					</Route>
 					<Route path='matches/:fixtureId/*' element={<MatchDetails  />} />
 				</Routes>
