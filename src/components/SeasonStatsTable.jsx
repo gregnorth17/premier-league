@@ -18,7 +18,13 @@ const SeasonStatsTable = ({stats, title}) => {
 			(
 				{
 					player: {name, photo}, 
-					statistics: [{cards: {yellow, red}, goals: {total, assists}, team: {name : teamName, logo}}] 
+					statistics: [
+							{
+								cards: {yellow, red}, 
+								goals: {total, assists},
+								team: {name : teamName, logo}
+						}
+					] 
 				}, 
 				index
 			) => {
@@ -54,6 +60,7 @@ const SeasonStatsTable = ({stats, title}) => {
 				)
 			}
 		})
+		
 		return (
 				<Table key={``} aria-label="simple table">
 						<caption style={{ captionSide:'top', fontSize: '1rem', color: '#bdc1c6', fontWeight: '500' }}>{title}</caption>

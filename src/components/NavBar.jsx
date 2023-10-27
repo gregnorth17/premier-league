@@ -52,12 +52,12 @@ const NavBar = () => {
 					<NavLink to='.' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
 						table
 					</NavLink>
-					<NavLink to='seasonstats' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
+					{/* <NavLink to='seasonstats' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
 						stats
 					</NavLink>
 					<NavLink to='players' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
 						players
-					</NavLink>
+					</NavLink> */}
 			</nav>
 		</header>
 	)

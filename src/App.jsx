@@ -1,30 +1,36 @@
-import { createContext, useEffect, useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import './App.css'
 // import TeamData from './components/TeamData'
 // import Club from './pages/Club'
 import Layout from './components/Layout'
-import MatchDetails from './components/MatchDetails'
-import SeasonStats from './components/SeasonStats'
-import Home from "./pages/Home"
+import NotFound from './pages/NotFound'
+// import Lineups from './components/Lineups'
+// import MatchDetails from './components/MatchDetails'
+// import MatchDetailsLayout from './components/MatchDetailsLayout'
+// import Stats from './components/Stats'
+import Home from './pages/Home'
 import Matches from './pages/Matches'
+// import SeasonStats from './pages/SeasonStats'
+import Error from './components/Error'
+import { loader as leagueLoader } from './pages/Home'
+import { fixturesLoader } from './pages/Matches'
 
-const YearContext = createContext()
+// const YearContext = createContext()
 
-export { YearContext }
+// export { YearContext }
 
 function App() {
 	// const [leagueData, setLeagueData] = useState(null)
-	const [localLeagueData, setLocalLeagueData] = useState(null)
+	// const [localLeagueData, setLocalLeagueData] = useState(null)
 	// const [teams, setTeams] = useState(null)
-	const [fixtures, setFixtures] = useState(null)
+	// const [fixtures, setFixtures] = useState(null)
+	const [fixture, setFixture] = useState(null)
+
 	const year = new Date().getFullYear()
 	const [seasonYear, setSeasonYear] = useState(year)
 	// const [topScorers, setTopScorers] = useState(null)
 	const [seasonStats, setSeasonStats] = useState(null)
-	
-	console.log(localLeagueData)
-	console.log(seasonYear)
 	
 	
 	// setLeague(data.response[0].league)
@@ -86,14 +92,14 @@ function App() {
 		useEffect(() => {
 			if(window.localStorage) {
 
-				const league = window.localStorage.getItem('league')
-				league !== null ? setLocalLeagueData(JSON.parse(league)) : null
+				// const league = window.localStorage.getItem('league')
+				// league !== null ? setLocalLeagueData(JSON.parse(league)) : null
 
 				// const teams = window.localStorage.getItem('teams')
 				// teams !== null ? setTeams(JSON.parse(teams)) : null
 
-				const fixtures = window.localStorage.getItem('fixtures')
-				fixtures !== null ? setFixtures(JSON.parse(fixtures)) : null
+				// const fixtures = window.localStorage.getItem('fixtures')
+				// fixtures !== null ? setFixtures(JSON.parse(fixtures)) : null
 				
 				// const fixture = window.localStorage.getItem('fixture')
 				// setFixture(JSON.parse(fixture))
@@ -136,19 +142,28 @@ function App() {
 			}
 		}, [seasonYear])
 			
-		console.log(seasonStats)
+
+		const router = createBrowserRouter(createRoutesFromElements(
+			<>
+				<Route path='/' element={<Layout />}  >
+					<Route index loader={leagueLoader} element={<Home  />} errorElement={<Error />}/>
+					{/* <Route index loader={leagueLoader}  element={<YearContext.Provider value={{setSeasonYear, seasonYear}}><Home  /></YearContext.Provider>} /> */}
+					{/* <Route path=':id' element={<Team teams={teams} />} /> */}
+					<Route path='matches' loader={fixturesLoader} element={<Matches />} />
+					{/* <Route path='seasonstats' element={<SeasonStats seasonStats={seasonStats} />} /> */}
+				<Route path='*' element={<NotFound />} />
+				</Route>
+				{/* <Route path='matches/:fixtureId/*' loader={fixturesLoader} element={<MatchDetails />} />
+					<Route element={<MatchDetailsLayout />}>
+						<Route index element={<Stats stats={fixture} />}  />
+						<Route path='lineups' element={<Lineups lineups={fixture} />}  />
+					</Route> */}
+				{/* outlet context */}
+			</>
+		))
+
   return (
-			
-				<Routes>
-					<Route path='/' element={<Layout />}>
-						<Route index element={<YearContext.Provider value={{setSeasonYear, seasonYear}}><Home localLeagueData={localLeagueData} /></YearContext.Provider>} />
-						{/* <Route path=':id' element={<Team teams={teams} />} /> */}
-						<Route path='matches' element={<Matches fixtures={fixtures} />} />
-						<Route path='seasonstats' element={<SeasonStats seasonStats={seasonStats} />} />
-					</Route>
-					<Route path='matches/:fixtureId/*' element={<MatchDetails  />} />
-				</Routes>
-			
+		<RouterProvider router={router} />
   )
 }
 export default App

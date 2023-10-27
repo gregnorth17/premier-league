@@ -2,17 +2,13 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule'
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer'
 import { Box, Typography } from '@mui/material'
-import { useEffect, useState } from 'react'
-import { Link, Route, Routes, useParams } from 'react-router-dom'
-import Lineups from './Lineups'
+import { useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 // import MatchDetailsNav from './MatchDetailsNav'
-import MatchDetailsLayout from './MatchDetailsLayout'
-import Stats from './Stats'
 
 
-const MatchDetails = () => {
+const MatchDetails = ({fixture, setFixture}) => {
 
-	const [fixture, setFixture] = useState(null)
 	
 	const {fixtureId} = useParams()
 	console.log(fixtureId)
@@ -31,26 +27,33 @@ const MatchDetails = () => {
 		// 				localStorage.setItem('fixture', JSON.stringify(data.response[0]))
 		// 	})
 		// },[fixtureId])
-	
+
+		
 		useEffect(() => {
 			const fixture = window.localStorage.getItem('fixture')
 			setFixture(JSON.parse(fixture))
-		}, [])
+		}, [fixtureId])
 		console.log(fixture)
 
+		
 		const {
 			events,
-			statistics,
-			lineups,
+			// statistics,
+			// lineups,
 			league: {name: leagueName},
 			fixture: {date, status: {long: matchStatus}},
 			teams: {
-							away: {name: awayTeam, logo: awayBadge}, 
-							home: {name: homeTeam, logo: homeBadge}
-						},
+				away: {name: awayTeam, logo: awayBadge}, 
+				home: {name: homeTeam, logo: homeBadge}
+			},
 			goals: {away: awayGoals, home: homeGoals}
 		} 
 		= fixture
+
+
+		
+		
+
 	
 		const checkGoals = team => (
 			events.filter(({team: {name}, type}) => name === team && type === "Goal")
@@ -136,12 +139,6 @@ const MatchDetails = () => {
 								</Box>
 							</Box>
 						</Box>
-						<Routes>
-							<Route element={<MatchDetailsLayout />}>
-								<Route index element={<Stats stats={statistics} />}  />
-								<Route path='lineups' element={<Lineups lineups={lineups} />}  />
-							</Route>
-						</Routes>
 					</Box>
 				</Box>
 		)
