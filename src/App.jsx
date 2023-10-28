@@ -4,15 +4,14 @@ import './App.css'
 // import TeamData from './components/TeamData'
 // import Club from './pages/Club'
 import Layout from './components/Layout'
-import NotFound from './pages/NotFound'
-// import Lineups from './components/Lineups'
-// import MatchDetails from './components/MatchDetails'
-// import MatchDetailsLayout from './components/MatchDetailsLayout'
-// import Stats from './components/Stats'
+import MatchDetailsLayout from './components/MatchDetailsLayout'
 import Home from './pages/Home'
 import Matches from './pages/Matches'
+import NotFound from './pages/NotFound'
 // import SeasonStats from './pages/SeasonStats'
 import Error from './components/Error'
+import { fixtureLoader } from './components/MatchDetailsLayout'
+import Stats from './components/Stats'
 import { loader as leagueLoader } from './pages/Home'
 import { fixturesLoader } from './pages/Matches'
 
@@ -151,13 +150,12 @@ function App() {
 					{/* <Route path=':id' element={<Team teams={teams} />} /> */}
 					<Route path='matches' loader={fixturesLoader} element={<Matches />} />
 					{/* <Route path='seasonstats' element={<SeasonStats seasonStats={seasonStats} />} /> */}
-				<Route path='*' element={<NotFound />} />
+					<Route path='*' element={<NotFound />} />
 				</Route>
-				{/* <Route path='matches/:fixtureId/*' loader={fixturesLoader} element={<MatchDetails />} />
-					<Route element={<MatchDetailsLayout />}>
-						<Route index element={<Stats stats={fixture} />}  />
-						<Route path='lineups' element={<Lineups lineups={fixture} />}  />
-					</Route> */}
+				<Route  path='matches/:fixtureId/' element={<MatchDetailsLayout />} loader={fixtureLoader}>
+					<Route index path='stats' element={<Stats />}  />
+					{/* <Route path='lineups' element={<Lineups lineups={fixture} />}  /> */}
+				</Route>
 				{/* outlet context */}
 			</>
 		))

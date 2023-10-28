@@ -16,41 +16,22 @@ const Matches = () => {
 
 	const typeFilter = searchParams.get('type')
 
-	
+	const displayFixtures = typeFilter ? 
+		fixtures.filter(({teams: {away: {name: awayTeam}, home: {name: homeTeam}}}) =>
+			awayTeam.toLowerCase() === typeFilter || 
+			homeTeam.toLowerCase() === typeFilter) 
+			:
+		fixtures
 
-		// const displayFixtures = typeFilter ? 
-		// 	fixtures.filter(
-		// 		(	fixture,
-		// 			{teams: {away: {name: awayTeam}, home: {name: homeTeam}}}
+	console.log(displayFixtures)
 
-		// 		) =>  {
-		// 			if(homeTeam.toLowerCase() === typeFilter ||  awayTeam.toLowerCase() === typeFilter) {
-		// 				return fixture
-		// 		}}
-		// 	) :
-		// 	fixtures
+	console.log(typeFilter)
 
-		// const displayFixtures = typeFilter ? 
-			// fixtures.filter(fixture => {if(fixture.teams.home.toLowerCase() === typeFilter) {return fixture}}) :
-		const displayFixtures = typeFilter ? 
-			fixtures.filter(({teams: {away: {name: awayTeam}, home: {name: homeTeam}}}) =>
-				awayTeam.toLowerCase() === typeFilter || 
-				homeTeam.toLowerCase() === typeFilter) 
-				:
-			fixtures
-
-		console.log(displayFixtures)
-
-		console.log(typeFilter)
-	
-		return (
-			<>	
-				{fixtures &&
-				<Fixtures>
-					{displayFixtures.map(fixture => <Fixture key={fixture.fixture.id} fixture={fixture} />)}
-				</Fixtures>}
-			</>
-		)
+	return (
+		<Fixtures>
+			{displayFixtures.map(fixture => <Fixture key={fixture.fixture.id} fixture={fixture} />)}
+		</Fixtures>
+	)
 }
 
 export { fixturesLoader };

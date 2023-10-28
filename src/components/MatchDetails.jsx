@@ -1,19 +1,33 @@
+// import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+// import MatchDetailsNav from './MatchDetailsNav'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule'
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer'
 import { Box, Typography } from '@mui/material'
-import { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
-// import MatchDetailsNav from './MatchDetailsNav'
+import { Link } from 'react-router-dom'
 
+// const fixtureLoader = () => (fetchFixture())
 
-const MatchDetails = ({fixture, setFixture}) => {
+const MatchDetails = ({fixture}) => {
 
-	
 	const {fixtureId} = useParams()
 	console.log(fixtureId)
 
-	try {
+	// const {
+	// 		events,
+	// 		// statistics,
+	// 		// lineups,
+	// 		league: {name: leagueName},
+	// 		fixture: {date, status: {long: matchStatus}},
+	// 		teams: {
+	// 			away: {name: awayTeam, logo: awayBadge}, 
+	// 			home: {name: homeTeam, logo: homeBadge}
+	// 		},
+	// 		goals: {away: awayGoals, home: homeGoals}
+	// 	}  = useLoaderData()
+
+	// console.log(data)
 		// useEffect(() => {
 		// 	fetch(`https://v3.football.api-sports.io/fixtures?id=${fixtureId}`, {
 		// 				headers: {
@@ -29,11 +43,11 @@ const MatchDetails = ({fixture, setFixture}) => {
 		// },[fixtureId])
 
 		
-		useEffect(() => {
-			const fixture = window.localStorage.getItem('fixture')
-			setFixture(JSON.parse(fixture))
-		}, [fixtureId])
-		console.log(fixture)
+		// useEffect(() => {
+		// 	const fixture = window.localStorage.getItem('fixture')
+		// 	setFixture(JSON.parse(fixture))
+		// }, [fixtureId])
+		// console.log(fixture)
 
 		
 		const {
@@ -80,7 +94,6 @@ const MatchDetails = ({fixture, setFixture}) => {
 		const underlineHover = {'&:hover': {textDecoration: 'underline'}}
 	
 		return (
-			fixture && 
 				<Box sx={{background: '#171717'}}>
 					<Box sx={{display:'flex',  p:'1.25em 0 1.25em 1.25em', background:'#212121'}}  >
 						<Link to='..' relative='path'><ArrowBackIcon sx={{color: '#ffffff', mr:'.25em'}}/></Link>
@@ -142,11 +155,7 @@ const MatchDetails = ({fixture, setFixture}) => {
 					</Box>
 				</Box>
 		)
-
-	} catch (err) {
-		console.error(err)
-	}
-		
 }
 
+// export { fixtureLoader }
 export default MatchDetails

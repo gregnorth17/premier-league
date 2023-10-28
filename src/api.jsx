@@ -23,5 +23,12 @@ const fetchFixtures = () => {
 	return data
 }
 
-export { fetchFixtures, fetchLeagueData }
+const fetchFixture = () => {
+	const res = localStorage.getItem('fixture')
+	const data = JSON.parse(res)
+
+	return data
+}
+
+export { fetchFixture, fetchFixtures, fetchLeagueData }
 
