@@ -152,8 +152,8 @@ function App() {
 					{/* <Route path='seasonstats' element={<SeasonStats seasonStats={seasonStats} />} /> */}
 					<Route path='*' element={<NotFound />} />
 				</Route>
-				<Route  path='matches/:fixtureId/' element={<MatchDetailsLayout />} loader={fixtureLoader}>
-					<Route index path='stats' element={<Stats />}  />
+				<Route path='matches/:fixtureId/*' element={<MatchDetailsLayout />} loader={fixtureLoader}>
+					<Route path='stats' element={<Stats />}  />
 					{/* <Route path='lineups' element={<Lineups lineups={fixture} />}  /> */}
 				</Route>
 				{/* outlet context */}
