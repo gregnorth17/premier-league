@@ -3,10 +3,17 @@ import { Box, Typography } from '@mui/material';
 import { useOutletContext } from 'react-router-dom';
 
 const Stats = () => {
-
+	
 	const {statistics: stats} = useOutletContext()
 
 	console.log(stats)
+
+	if(stats === []) {
+		return (
+			<h1>there are no stats</h1>
+		)
+	}
+
 
 	const [
 		homeStats,
@@ -15,13 +22,13 @@ const Stats = () => {
 		awayBadge,
 
 	] = [
-			stats[0].statistics,
-			stats[1].statistics, 
-			stats[0].team.logo,
-			stats[1].team.logo
+			stats[0]?.statistics,
+			stats[1]?.statistics, 
+			stats[0]?.team.logo,
+			stats[1]?.team.logo
 		]
 
-	const teamStatsHTML = homeStats.map(({value, type}, index) => {
+	const teamStatsHTML = homeStats?.map(({value, type}, index) => {
 
 		const getStatValue = statValue => statValue === null ? '-' : statValue
 

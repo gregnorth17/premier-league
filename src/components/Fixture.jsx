@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 
 
 const Fixture = ({fixture}) => {
-	
-	try{
 
 		const {
 			fixture: {id},
@@ -90,9 +88,6 @@ const Fixture = ({fixture}) => {
 				</Box>
 			</Link>
 		)
-	} catch(e){
-		console.error(e)
-	}
 }
 
 export default Fixture

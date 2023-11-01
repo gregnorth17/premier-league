@@ -1,6 +1,10 @@
 import { Box, Typography } from '@mui/material'
+import { useOutletContext } from 'react-router-dom'
 
-const Lineups = ({lineups}) => {
+
+const Lineups = () => {
+	const {lineups} = useOutletContext()
+	console.log(lineups)
 	// try children
 	const lineupsHTML = lineups.map(
 		(
@@ -11,8 +15,9 @@ const Lineups = ({lineups}) => {
 			},
 			index
 		) => {
+			// style={{background: '#212121', maxWidth:'632px'}}
 			return (
-				<Box color='#bdc1c6' width='50%' key={index}>
+				<Box sx={{background: '#212121'}} color='#bdc1c6' background='#212121' width='50%' key={index}>
 					<Box sx={{
 						display: 'grid',
 						gridTemplateColumns: 'repeat(3, auto)'

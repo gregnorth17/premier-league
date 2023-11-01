@@ -10,7 +10,6 @@ const Matches = () => {
 	// console.log(fixtures)
 
 	const fixtures = useLoaderData()
-	console.log(fixtures)
 
 	const [searchParams, setSearchParams] = useSearchParams()
 

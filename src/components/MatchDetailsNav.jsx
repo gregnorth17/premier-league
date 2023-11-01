@@ -32,7 +32,7 @@ const MatchDetailsNav = () => {
 			<NavLink className='match-details-nav-link' style={({isActive}) => getStyles(isActive)} to='lineups'>
 				lineup
 			</NavLink>
-			<NavLink className='match-details-nav-link' style={({isActive}) => getStyles(isActive)} end  to='.'>
+			<NavLink className='match-details-nav-link' style={({isActive}) => getStyles(isActive)} end to='.'>
 				stats
 			</NavLink>
 		</nav>

@@ -1,5 +1,27 @@
+const headers =  {
+				"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357",
+			}
 
-const year = new Date().getFullYear()
+// fetch(`https://v3.football.api-sports.io/standings?league=39&season=${seasonYear}
+// fetch(`https://v3.football.api-sports.io/fixtures?league=39&season=${seasonYear}`
+// fetch('https://v3.football.api-sports.io/teams?league=39&season=2022'
+// 	fetch(`https://v3.football.api-sports.io/fixtures?id=${fixtureId}`, {
+
+
+// const topScorersUrl = fetch(`https://v3.football.api-sports.io/players/topscorers?league=39&season=${seasonYear}`, headers).then(resp => resp.json())
+	// const assistsUrl = fetch(`https://v3.football.api-sports.io/players/topassists?league=39&season=${seasonYear}`, headers).then(resp => resp.json())
+	// const yellowCardUrl = fetch(`https://v3.football.api-sports.io/players/topyellowcards?league=39&season=${seasonYear}`, headers).then(resp => resp.json())
+	// const redCardUrl = fetch(`https://v3.football.api-sports.io/players/topredcards?league=39&season=${seasonYear}`, headers).then(resp => resp.json())
+
+	// Promise.all([topScorersUrl, assistsUrl, yellowCardUrl, redCardUrl])
+	// 	.then(data => {
+	// 		console.log(data)
+	// 		const seasonData = data.map(data => [...data.response])
+	// 		localStorage.setItem(`seasonStats${seasonYear}`, JSON.stringify(seasonData))
+	// 		// setSeasonStats(data)
+	// 	})
+
+const seasonYear = new Date().getFullYear()
 
 const fetchLeagueData = () => {
 	const res = localStorage.getItem('league')
@@ -17,18 +39,37 @@ const fetchLeagueData = () => {
 }
 
 const fetchFixtures = () => {
-	const res = localStorage.getItem('fixtures')
-	const data = JSON.parse(res)
+		const res = localStorage.getItem('fixtures')
+		const data = JSON.parse(res)
 
-	return data
+		return data
+
 }
 
 const fetchFixture = () => {
+// 	fetch(`https://v3.football.api-sports.io/fixtures?id=1035326`,{
+// 	headers: {
+// 				"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357"
+// 	}
+// })
+// 	.then(res => res.json())
+// 	.then(data => {
+// 		console.log(data)
+// 		localStorage.setItem('fixture', JSON.stringify(data))
+// 		return data
+// 	})
 	const res = localStorage.getItem('fixture')
 	const data = JSON.parse(res)
 
-	return data
+	return data.response[0]
 }
 
-export { fetchFixture, fetchFixtures, fetchLeagueData }
+const fetchSeasonStats = () => {
+	const res = localStorage.getItem('seasonStats')
+	const data = JSON.parse(res)
+
+	return data.map(stat => stat.response)
+}
+
+export { fetchFixture, fetchFixtures, fetchLeagueData, fetchSeasonStats }
 
