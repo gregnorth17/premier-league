@@ -11,9 +11,9 @@ const fixtureLoader = ( {params} ) => {
 const MatchDetailsLayout = () => {
 	
 	const fixture = useLoaderData()
-	console.log(fixture)
+	// console.log(fixture)
 	const {statistics, lineups} = fixture
-
+	// console.log(statistics, lineups)
 	return (
 		<>
 			<MatchDetails fixture={fixture}  />

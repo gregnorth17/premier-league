@@ -6,7 +6,7 @@ import Error from './components/Error'
 import Layout from './components/Layout'
 import Lineups from './components/Lineups'
 import MatchDetailsLayout, { fixtureLoader } from './components/MatchDetailsLayout'
-import Stats from './components/Stats'
+import Stats, { probabilityLoader } from './components/Stats'
 import Home, { loader as leagueLoader } from './pages/Home'
 import Matches, { fixturesLoader } from './pages/Matches'
 import NotFound from './pages/NotFound'
@@ -30,7 +30,7 @@ const App = () => {
 				<Route path='*' element={<NotFound />} />
 			</Route>
 			<Route path='matches/:fixtureId/' element={<MatchDetailsLayout />} loader={fixtureLoader}>
-				<Route index element={<Stats />}  />
+				<Route index element={<Stats />} loader={probabilityLoader}  />
 				<Route path='lineups' element={<Lineups />}  />
 			</Route>
 		</>

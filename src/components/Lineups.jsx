@@ -1,11 +1,11 @@
+import PeopleIcon from '@mui/icons-material/People'
 import { Box, Typography } from '@mui/material'
 import { useOutletContext } from 'react-router-dom'
 
-
 const Lineups = () => {
+
 	const {lineups} = useOutletContext()
-	console.log(lineups)
-	// try children
+
 	const lineupsHTML = lineups.map(
 		(
 			{
@@ -15,7 +15,6 @@ const Lineups = () => {
 			},
 			index
 		) => {
-			// style={{background: '#212121', maxWidth:'632px'}}
 			return (
 				<Box sx={{background: '#212121'}} color='#bdc1c6' background='#212121' width='50%' key={index}>
 					<Box sx={{
@@ -43,15 +42,23 @@ const Lineups = () => {
 			</Box>
 			)
 		})
-		return (
-			<Box sx={{
-				display: 'flex',
-				padding: '1em',
-				gap: '1em'
-			}}>
-				{lineupsHTML}
-			</Box>
-		)
+
+	return (
+		lineups.length === 0 ?
+		
+		<Box textAlign='center' mt='1em'>
+			<PeopleIcon fontSize='large' sx={{color: '#9aa0a6'}} />
+			<Typography color='#9aa0a6'>The line-up will be posted before the match</Typography>
+		</Box>
+		:
+		<Box sx={{
+			display: 'flex',
+			padding: '1em',
+			gap: '1em'
+		}}>
+			{lineupsHTML}
+		</Box>
+	)
 }
 
 export default Lineups

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 
 const MatchDetails = ({fixture}) => {
-	console.log(fixture)
+	// console.log(fixture)
 	const {
 		events,
 		league: {name: leagueName},

@@ -47,6 +47,8 @@ const fetchFixtures = () => {
 }
 
 const fetchFixture = () => {
+	// 867946
+	// 1035326
 // 	fetch(`https://v3.football.api-sports.io/fixtures?id=1035326`,{
 // 	headers: {
 // 				"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357"
@@ -55,10 +57,10 @@ const fetchFixture = () => {
 // 	.then(res => res.json())
 // 	.then(data => {
 // 		console.log(data)
-// 		localStorage.setItem('fixture', JSON.stringify(data))
+// 		localStorage.setItem('fixtureLiv', JSON.stringify(data))
 // 		return data
 // 	})
-	const res = localStorage.getItem('fixture')
+	const res = localStorage.getItem('fixtureLiv')
 	const data = JSON.parse(res)
 
 	return data.response[0]
@@ -71,5 +73,24 @@ const fetchSeasonStats = () => {
 	return data.map(stat => stat.response)
 }
 
-export { fetchFixture, fetchFixtures, fetchLeagueData, fetchSeasonStats }
+const fetchProbability = () => {
+	// fetch(`https://v3.football.api-sports.io/predictions?fixture=1035326`, {
+	// 		headers: {
+	// 			"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357"
+	// 		}
+	// 	})
+	// 	.then(response => response.json())
+	// 	.then(data => {
+	// 		console.log(data)
+	// 		localStorage.setItem('prediction', JSON.stringify(data))
+	// 		return data
+	// 	})
+	const res = localStorage.getItem('prediction')
+	const data = JSON.parse(res)
+
+	console.log(data)
+	return data.response[0]
+}
+
+export { fetchFixture, fetchFixtures, fetchLeagueData, fetchProbability, fetchSeasonStats }
 
