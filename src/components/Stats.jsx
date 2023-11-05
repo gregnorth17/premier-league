@@ -14,27 +14,20 @@ const Stats = () => {
 
 	const {predictions: {percent}, teams} = useLoaderData()
 
-	console.log(teams)
-
 	const {league: {standings: [standings]}} = fetchLeagueData()
-
-	
-
-	const getBackgroundColor = (homeTeam, awayTeam, leaguePosition) => (
-		homeTeam || awayTeam === leaguePosition ? '#424548' : ''
-	)
 
 	return (
 		statistics.length === 0 ?
 		<>
 			<Probability percent={percent} teams={teams} />
-			<LeagueTable>
-				{standings.map((team, {id}) => {
-					console.log(team)
-					const backgroundColor = getBackgroundColor(teams.home.name, teams.away.name, team.team.name)
-					return <LeaguePosition backgroundColor={backgroundColor} key={id} team={team} />
-				})}
-			</LeagueTable>
+			<h3 style={{textAlign: 'center', fontSize: '.75rem', color: '#bdc1c6', paddingTop: '1.25em'}}>STANDINGS</h3>
+			<div style={{width: '97%', margin: '0 auto'}}>
+				<LeagueTable>
+					{standings.map((team, {id}) => {
+						return <LeaguePosition  key={id} team={team} homeTeam={teams.home.name} awayTeam={teams.away.name} />
+					})}
+				</LeagueTable>
+			</div>
 		</>
 		:
 		<h1>stats</h1>

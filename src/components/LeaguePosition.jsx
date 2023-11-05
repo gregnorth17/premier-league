@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { Link } from 'react-router-dom'
-const LeaguePosition = ({team, backgroundColor}) => {
+const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 	
 	const {
 		rank,
@@ -22,6 +22,10 @@ const LeaguePosition = ({team, backgroundColor}) => {
 
 	const getLeftBorder = description => description ? `3px solid ${promotionColor[description]}` : '3px solid transparent'
 	
+	const getBackgroundColor = (name, probHomeTeam, probAwayTeam) => {
+		return probHomeTeam === name || probAwayTeam === name ? '#424548' : ''
+	}
+
 	const style = {
 		color: '#bdc1c6', 
 		borderBottom: `1px solid #3c4043`,
@@ -33,7 +37,7 @@ const LeaguePosition = ({team, backgroundColor}) => {
 	return (
 		<TableRow sx={{
 					borderLeft: `${getLeftBorder(description)}`,
-					background: `${backgroundColor}`,
+					background: `${getBackgroundColor(name, homeTeam, awayTeam)}`,
 					'&:hover': {
 						background: '#424548'
 					}
