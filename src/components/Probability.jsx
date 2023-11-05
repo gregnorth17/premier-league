@@ -1,8 +1,6 @@
 
 
 const Probability = ({percent, teams}) => {
-	console.log(percent)
-	console.log(teams)
 	return (
 		<div style={{
 			margin:'0 auto',
@@ -10,7 +8,7 @@ const Probability = ({percent, teams}) => {
 			gridTemplateColumns: 'repeat(3, 1fr)',
 			width: '90%'
 		}}>
-			<div style={{gridColumn: '1 / span 3', color: '#bdc1c6', textAlign:'center', fontWeight: '800', marginTop: '1em', fontSize: '.75rem'}}>WIN PROBABILITY</div>
+			<div style={{gridColumn: '1 / span 3', color: '#bdc1c6', textAlign:'center', fontWeight: '800', margin: '1em', fontSize: '.75rem'}}>WIN PROBABILITY</div>
 			<div style={{textAlign: 'left', color: '#bdc1c6', fontWeight: '600', fontSize: '.75rem'}} width='33%'>{teams.home.name}</div>
 			<div style={{textAlign: 'center', color: '#bdc1c6', fontWeight: '600', fontSize: '.75rem'}}  width='33%'>Draw</div>
 			<div style={{textAlign: 'right', color: '#bdc1c6', fontWeight: '600', fontSize: '.75rem'}}  width='33%'>{teams.away.name}</div>

@@ -1,7 +1,9 @@
 // import { Box, Typography } from '@mui/material';
-// import {fixtureLoader} from '../api'
 import { useLoaderData, useOutletContext } from 'react-router-dom';
-import { fetchProbability } from '../api';
+import { fetchLeagueData, fetchProbability } from '../api';
+import LeagueTable from './LeagueTable';
+// import LeagueTableLayout from './LeagueTableLayout';
+import LeaguePosition from './LeaguePosition';
 import Probability from './Probability';
 
 const probabilityLoader = () => (fetchProbability())
@@ -13,12 +15,28 @@ const Stats = () => {
 	const {predictions: {percent}, teams} = useLoaderData()
 
 	console.log(teams)
+
+	const {league: {standings: [standings]}} = fetchLeagueData()
+
 	
-	console.log(statistics)
+
+	const getBackgroundColor = (homeTeam, awayTeam, leaguePosition) => (
+		homeTeam || awayTeam === leaguePosition ? '#424548' : ''
+	)
 
 	return (
 		statistics.length === 0 ?
-		<Probability percent={percent} teams={teams} /> :
+		<>
+			<Probability percent={percent} teams={teams} />
+			<LeagueTable>
+				{standings.map((team, {id}) => {
+					console.log(team)
+					const backgroundColor = getBackgroundColor(teams.home.name, teams.away.name, team.team.name)
+					return <LeaguePosition backgroundColor={backgroundColor} key={id} team={team} />
+				})}
+			</LeagueTable>
+		</>
+		:
 		<h1>stats</h1>
 	)
 

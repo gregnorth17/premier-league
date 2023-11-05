@@ -4,10 +4,11 @@ import './App.css'
 // import Club from './pages/Club'
 import Error from './components/Error'
 import Layout from './components/Layout'
+import { leagueTableLoader } from './components/LeagueTableLayout'
 import Lineups from './components/Lineups'
 import MatchDetailsLayout, { fixtureLoader } from './components/MatchDetailsLayout'
 import Stats, { probabilityLoader } from './components/Stats'
-import Home, { loader as leagueLoader } from './pages/Home'
+import Home from './pages/Home'
 import Matches, { fixturesLoader } from './pages/Matches'
 import NotFound from './pages/NotFound'
 import SeasonStats, { seasonStatsLoader } from './pages/SeasonStats'
@@ -22,7 +23,7 @@ const App = () => {
 	const router = createBrowserRouter(createRoutesFromElements(
 		<>
 			<Route path='/' element={<Layout />}  >
-				<Route index loader={leagueLoader} element={<Home  />} errorElement={<Error />}/>
+				<Route index loader={leagueTableLoader} element={<Home  />} errorElement={<Error />}/>
 				{/* <Route index loader={leagueLoader}  element={<YearContext.Provider value={{setSeasonYear, seasonYear}}><Home  /></YearContext.Provider>} /> */}
 				{/* <Route path=':id' element={<Team teams={teams} />} /> */}
 				<Route path='matches' loader={fixturesLoader} element={<Matches />} />

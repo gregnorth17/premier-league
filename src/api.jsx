@@ -34,7 +34,6 @@ const fetchLeagueData = () => {
 	// }
 	// const res = localStorage.getItem('league')
 	const data = JSON.parse(res)
-	console.log(data)
 	return data
 }
 
@@ -88,7 +87,6 @@ const fetchProbability = () => {
 	const res = localStorage.getItem('prediction')
 	const data = JSON.parse(res)
 
-	console.log(data)
 	return data.response[0]
 }
 

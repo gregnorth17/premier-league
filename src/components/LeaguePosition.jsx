@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { Link } from 'react-router-dom'
-const LeaguePosition = ({team}) => {
+const LeaguePosition = ({team, backgroundColor}) => {
 	
 	const {
 		rank,
@@ -33,6 +33,7 @@ const LeaguePosition = ({team}) => {
 	return (
 		<TableRow sx={{
 					borderLeft: `${getLeftBorder(description)}`,
+					background: `${backgroundColor}`,
 					'&:hover': {
 						background: '#424548'
 					}
