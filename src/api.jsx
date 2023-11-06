@@ -48,7 +48,7 @@ const fetchFixtures = () => {
 const fetchFixture = () => {
 	// 867946
 	// 1035326
-// 	fetch(`https://v3.football.api-sports.io/fixtures?id=1035326`,{
+// 	fetch(`https://v3.football.api-sports.io/fixtures?id=867946`,{
 // 	headers: {
 // 				"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357"
 // 	}

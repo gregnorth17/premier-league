@@ -2,9 +2,7 @@ import { useLoaderData } from 'react-router-dom'
 import { fetchLeagueData } from '../api'
 import LeaguePosition from '../components/LeaguePosition'
 import LeagueTable from "../components/LeagueTable"
-import PromReg from '../components/PromReg'
-import PromRegData from '../components/PromRegData'
-import { competitions } from '../data'
+import LeagueTableKey from './LeagueTableKey'
 
 const leagueTableLoader = () => (fetchLeagueData())
 
@@ -17,9 +15,7 @@ const LeagueTableLayout = () => {
 			<LeagueTable>
 				{standings.map((team, {id}) => <LeaguePosition key={id} team={team} />)}
 			</LeagueTable>
-			<PromReg>
-				{competitions.map(({name, color}) => <PromRegData key={name} name={name} color={color} />)}
-			</PromReg>
+			<LeagueTableKey />
 		</>
 	)
 }
