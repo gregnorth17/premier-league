@@ -11,39 +11,39 @@ const Matches = ({resultFilter}) => {
 	const {id : paramsId} = useParams()
 	const fixtures = useLoaderData()
 
-	console.log(resultFilter)
+	const teamFixtures = paramsId &&
+		fixtures.filter(({teams: {away: {id: awayId}, home: {id: homeId}}}) => awayId == paramsId || homeId == paramsId)
 
-
-	// const displayFixtures = typeFilter ? 
-	// 	fixtures.filter(({teams: {away: {name: awayTeam}, home: {name: homeTeam}}}) =>
-	// 		awayTeam.toLowerCase() === typeFilter || 
-	// 		homeTeam.toLowerCase() === typeFilter) 
-	// 		:
-	// 	fixtures
-
-	const displayFixtures = paramsId ?
-		fixtures.filter(({teams: {away: {id: awayId, winner: awayWin}, home: {id: homeId, winner: homeWin}}}) => {
-			if(awayId == paramsId || homeId == paramsId){return true}
-			USE .find 
-			// if(resultFilter === 'draw' && awayWin === null){return true}
-		})
-		:
-		fixtures
 	
-		// use result filter and id of team to filter results depending on win lose or draw
+	const filterTeamFixtures = paramsId ? 
+	
+		teamFixtures.filter(({teams: {away: {id: awayId, winner: awayWin}, home: {id: homeId, winner: homeWin}}}) => {
 
-	// const buttonFilter = displayFixtures.map(fixture => {
-	// 	if(resultFilter === 'win' &&
-	// 		fixture.teams.away.id == paramsId &&	fixture.teams.away.winner) {
-	// 			return fixture
-	// 		}
-	// })
+			if(resultFilter === 'draw' && awayWin === null) {return true}
 
-	console.log(displayFixtures)
+			if(resultFilter === null ) {return teamFixtures}
+
+			if(resultFilter === 'win' &&
+				awayWin === true && awayId == paramsId ||
+				resultFilter === 'win' &&
+				homeWin === true && homeId == paramsId) {
+					return true
+				}
+
+			if(resultFilter === 'lose' &&
+				awayWin === false && awayId == paramsId ||
+				resultFilter === 'lose' &&
+				homeWin === false && homeId == paramsId
+			) {
+				return true
+			}
+	})
+	:
+	fixtures
 
 	return (
 		<Fixtures>
-			{displayFixtures.map(fixture => <Fixture key={fixture.fixture.id} fixture={fixture} />)}
+			{filterTeamFixtures.map(fixture => <Fixture key={fixture.fixture.id} fixture={fixture} />)}
 		</Fixtures>
 	)
 }
