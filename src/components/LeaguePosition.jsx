@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { Link } from 'react-router-dom'
+
 const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 	
 	const {
@@ -12,6 +13,8 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 		team: {logo, id, name},
 		all: {played, win, draw, lose, goals: {for: goalsFor, against}}
 	} = team
+
+	const teamNameLink = name.replace(/ /g, '').toLowerCase()
 
 	const promotionColor = {
 		"Promotion - Champions League (Group Stage: )" : "#4285F4",

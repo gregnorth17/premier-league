@@ -27,9 +27,7 @@ const Fixture = ({fixture}) => {
 			fontWeight: 'bold'
 		}
 
-		const winnerStyles = team => (
-			team ? styles : ""
-		)
+		const winnerStyles = team => team ? styles : ""
 
 		return (
 			<Link style={{
