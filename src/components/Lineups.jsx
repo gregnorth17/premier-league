@@ -6,6 +6,8 @@ const Lineups = () => {
 
 	const {lineups} = useOutletContext()
 
+	console.log(lineups)
+
 	const lineupsHTML = lineups.map(
 		(
 			{

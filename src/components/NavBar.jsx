@@ -28,7 +28,6 @@ const NavBar = () => {
 
 	const getStyles = isActive => isActive ? activeStyle : style
 
-
   return (
 		<header>
 			<Box style={{background: '#3F1052'}}>
@@ -49,15 +48,12 @@ const NavBar = () => {
 					<NavLink to='matches' className='nav-link' style={({isActive}) => getStyles(isActive)} >
 						matches
 					</NavLink>
-					<NavLink to='.' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
+					<NavLink state={{message: 'ahoy there'}} to='.' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
 						table
 					</NavLink>
 					<NavLink to='seasonstats' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
 						stats
 					</NavLink>
-					{/* <NavLink to='players' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
-						players
-					</NavLink> */}
 			</nav>
 		</header>
 	)

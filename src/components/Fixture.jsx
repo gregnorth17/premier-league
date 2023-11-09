@@ -35,7 +35,7 @@ const Fixture = ({fixture}) => {
 				color: '#9aa0a6',
 				background: '#202124'
 				}}
-				to={`${id}`}>
+				to={`/matches/${id}`}>
 				<Box sx={{
 						display: 'grid',
 						gridTemplateColumns: '40px 135px auto 106px',
