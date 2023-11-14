@@ -3,7 +3,13 @@ import { fetchFixtures } from '../api';
 import Fixture from '../components/Fixture';
 import Fixtures from '../components/Fixtures';
 
-const fixturesLoader = () => (fetchFixtures())
+
+const fixturesLoader = ({request}) => {
+	console.log(request.url)
+	// const url = new URL(request.url)
+	// console.log(url)
+	return fetchFixtures()
+}
 
 
 const Matches = ({resultFilter}) => {

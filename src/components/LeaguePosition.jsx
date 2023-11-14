@@ -1,9 +1,13 @@
 import { Box, Typography } from '@mui/material'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { Context } from '../App'
 
 const LeaguePosition = ({team, homeTeam, awayTeam}) => {
+
+	const { setTeam } = useContext(Context)
 	
 	const {
 		rank,
@@ -13,6 +17,11 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 		team: {logo, id, name},
 		all: {played, win, draw, lose, goals: {for: goalsFor, against}}
 	} = team
+
+	// useEffect(() => {
+		
+	// 	setTeam({name, id})
+	// }, [])
 
 	const teamNameLink = name.replace(/ /g, '').toLowerCase()
 
@@ -65,10 +74,10 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 					>
 						<img src={logo} />
 					</Box>
-					<Link style={{
+					<Link  style={{
 								textDecoration: 'none',
 								color: '#bdc1c6'
-					}} to={`/${id}`}><Typography sx={{fontSize: '14px'}}>{name}</Typography></Link>
+					}} to={`${id}/matches`}><Typography  sx={{fontSize: '14px'}}>{name}</Typography></Link>
 			</TableCell>
 			<TableCell sx={style} align="center">{played}</TableCell>
 			<TableCell sx={style} align="center">{win}</TableCell>
