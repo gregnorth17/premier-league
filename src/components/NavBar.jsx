@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material'
 import { Link, NavLink } from 'react-router-dom'
 import logo from '../assets/leaguelogo.png'
 
+
 const NavBar = () => {
 	
 	const style = {

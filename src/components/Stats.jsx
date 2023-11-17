@@ -14,9 +14,8 @@ const probabilityLoader = () => (fetchProbability())
 const Stats = () => {
 
 	const {statistics} = useOutletContext()
-
 	const {predictions: {percent}, teams} = useLoaderData()
-
+	console.log(teams)
 	const {league: {standings: [standings]}} = fetchLeagueData()
 
 	return (

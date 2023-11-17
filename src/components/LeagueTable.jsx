@@ -29,6 +29,7 @@ const LeagueTable = ({children}) => {
             <TableCell sx={cellStyle} align="center">GA</TableCell>
             <TableCell sx={cellStyle} align="center">GD</TableCell>
             <TableCell sx={cellStyle} align="center">Pts</TableCell>
+            <TableCell sx={cellStyle} align="center">Last 5</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

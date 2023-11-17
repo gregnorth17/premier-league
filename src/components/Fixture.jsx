@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 const Fixture = ({fixture}) => {
-
+	
 		const {
 			fixture: {id},
 			teams: {
@@ -19,7 +19,7 @@ const Fixture = ({fixture}) => {
 		const time = new Date(date).toLocaleTimeString().slice()
 
 		const displayArrow = team => (
-			team ? <ArrowLeftIcon sx={{position: 'absolute', paddingBottom: '3px'}} /> : ""
+			team ? <ArrowLeftIcon style={{position: 'absolute', paddingBottom: '3px'}} /> : ""
 		)
 
 		const styles = {
@@ -40,12 +40,9 @@ const Fixture = ({fixture}) => {
 						display: 'grid',
 						gridTemplateColumns: '40px 135px auto 106px',
 						alignItems: 'center',
-						borderBottom: '1px solid rgb(60,64,67)',
+						border: '.5px solid rgb(60,64,67)',
 						height: '7em',
 						padding: '1em 0 1em 1em',
-						'&:nth-child(1)': {
-							borderRight: '1px solid rgb(60,64,67)'
-						},
 						'&:hover': {
 						background: '#424548'
 						}

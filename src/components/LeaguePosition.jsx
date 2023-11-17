@@ -1,17 +1,21 @@
 import { Box, Typography } from '@mui/material'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
-import { useContext } from 'react'
+// import { useContext } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { Context } from '../App'
+// import { Context } from '../App'
+
+import line from '../assets/draw.svg'
+import cross from '../assets/lose.svg'
+import tick from '../assets/win.svg'
 
 const LeaguePosition = ({team, homeTeam, awayTeam}) => {
-
-	const { setTeam } = useContext(Context)
-	
+	// const { setTeam } = useContext(Context)
+	console.log(team)
 	const { id: paramsId } = useParams()
 
 	const {
+		form,
 		rank,
 		goalsDiff,
 		points,
@@ -20,8 +24,16 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 		all: {played, win, draw, lose, goals: {for: goalsFor, against}}
 	} = team
 
+	const lastFive = [...form].map((match, index) => {
+		if(match === 'W') {return <img key={index} src={tick} />}
+		if(match === 'L') {return <img key={index} src={cross} />}
+		if(match === 'D') {return <img key={index} src={line} />}
+	})
 
-	const teamNameLink = name.replace(/ /g, '').toLowerCase()
+
+
+
+	// const teamNameLink = name.replace(/ /g, '').toLowerCase()
 
 	const promotionColor = {
 		"Promotion - Champions League (Group Stage: )" : "#4285F4",
@@ -85,6 +97,7 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 			<TableCell sx={style} align="center">{against}</TableCell>
 			<TableCell sx={style} align="center">{goalsDiff}</TableCell>
 			<TableCell sx={style} align="center">{points}</TableCell>
+			<TableCell sx={style} align="center">{lastFive}</TableCell>
 		</TableRow>
 	)
 }
