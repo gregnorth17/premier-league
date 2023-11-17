@@ -2,13 +2,15 @@ import { Box, Typography } from '@mui/material'
 import TableCell from '@mui/material/TableCell'
 import TableRow from '@mui/material/TableRow'
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Context } from '../App'
 
 const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 
 	const { setTeam } = useContext(Context)
 	
+	const { id: paramsId } = useParams()
+
 	const {
 		rank,
 		goalsDiff,
@@ -18,10 +20,6 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 		all: {played, win, draw, lose, goals: {for: goalsFor, against}}
 	} = team
 
-	// useEffect(() => {
-		
-	// 	setTeam({name, id})
-	// }, [])
 
 	const teamNameLink = name.replace(/ /g, '').toLowerCase()
 
@@ -35,7 +33,7 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 	const getLeftBorder = description => description ? `3px solid ${promotionColor[description]}` : '3px solid transparent'
 	
 	const getBackgroundColor = (name, probHomeTeam, probAwayTeam) => {
-		return probHomeTeam === name || probAwayTeam === name ? '#424548' : ''
+		return probHomeTeam === name || probAwayTeam === name || id == paramsId  ? '#424548' : ''
 	}
 
 	const style = {
@@ -77,7 +75,7 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 					<Link  style={{
 								textDecoration: 'none',
 								color: '#bdc1c6'
-					}} to={`${id}/matches`}><Typography  sx={{fontSize: '14px'}}>{name}</Typography></Link>
+					}} to={`${id}`}><Typography  sx={{fontSize: '14px'}}>{name}</Typography></Link>
 			</TableCell>
 			<TableCell sx={style} align="center">{played}</TableCell>
 			<TableCell sx={style} align="center">{win}</TableCell>

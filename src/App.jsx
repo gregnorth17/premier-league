@@ -8,6 +8,7 @@ import Lineups from './components/Lineups'
 import MatchDetailsLayout, { fixtureLoader } from './components/MatchDetailsLayout'
 import Stats, { probabilityLoader } from './components/Stats'
 import TeamPage, { teamPageLoader } from './components/TeamPage'
+import TeamPageLayout from './components/TeamPageLayout'
 import Home from './pages/Home'
 import Matches, { fixturesLoader } from './pages/Matches'
 import NotFound from './pages/NotFound'
@@ -20,19 +21,20 @@ const App = () => {
 	// export { YearContext }
 	
 	
-	const [team, setTeam] = useState({})
+	const [team, setTeam] = useState(null)
 	console.log(team)
 	const router = createBrowserRouter(createRoutesFromElements(
 		<>
-			<Route path='/' element={<Layout />}  >
+			<Route path='/' element={<Layout />} >
 				<Route index loader={leagueTableLoader} element={<Home  />} errorElement={<Error />}/>
-				{/* <Route index loader={leagueLoader}  element={<YearContext.Provider value={{setSeasonYear, seasonYear}}><Home  /></YearContext.Provider>} /> */}
 				<Route path='matches' loader={fixturesLoader} element={<Matches />} />
 				<Route path='seasonstats' loader={seasonStatsLoader} element={<SeasonStats />} />
 				<Route path='*' element={<NotFound />} />
 			</Route>
-			<Route path=':id/matches' loader={fixturesLoader} action={teamPageLoader} element={<TeamPage />} />
-			<Route path=':id/matches' loader={fixturesLoader} action={teamPageLoader} element={<TeamPage />} />
+			<Route path=':id' element={<TeamPageLayout />}>
+				<Route index loader={fixturesLoader} action={teamPageLoader} element={<TeamPage />} />
+				<Route path='table' loader={leagueTableLoader} element={<Home />} />
+			</Route>
 			<Route path='matches/:fixtureId/' element={<MatchDetailsLayout />} loader={fixtureLoader}>
 				<Route index element={<Stats />} loader={probabilityLoader}  />
 				<Route path='lineups' element={<Lineups />}  />

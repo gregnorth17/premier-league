@@ -48,7 +48,7 @@ const NavBar = () => {
 					<NavLink to='matches' className='nav-link' style={({isActive}) => getStyles(isActive)} >
 						matches
 					</NavLink>
-					<NavLink state={{message: 'ahoy there'}} to='.' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
+					<NavLink to='.' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
 						table
 					</NavLink>
 					<NavLink to='seasonstats' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>

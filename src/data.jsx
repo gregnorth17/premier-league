@@ -16,3 +16,12 @@
 		color: '#EA4335'
 	}
 ]
+
+export const teamColors = [
+	{
+		name: 'Liverpool',
+		primary: '#C8102E',
+		secondary: '#00B2A9'
+		
+	}
+]

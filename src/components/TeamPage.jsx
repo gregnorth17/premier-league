@@ -2,7 +2,6 @@ import { Button } from '@mui/material'
 import { useSearchParams } from 'react-router-dom'
 import Matches from '../pages/Matches'
 // import NavBar from './NavBar'
-import TeamPageNavBar from './TeamPageNavBar'
 
 
 const teamPageLoader = ({ params }) => {
@@ -18,7 +17,6 @@ const TeamPage = () => {
 
 	return (
 		<>
-		<TeamPageNavBar />
 		<div>
 			<Button variant='outlined' color='error' onClick={() => setSearchParams({result: 'win'})}>Win</Button>
 			<Button variant='outlined' color='error' onClick={() => setSearchParams({result: 'lose'})}>Lose</Button>

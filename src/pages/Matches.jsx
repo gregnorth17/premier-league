@@ -1,24 +1,40 @@
+import { useContext, useEffect } from 'react';
 import { useLoaderData, useParams, } from 'react-router-dom';
+// import { Context } from '../App';
 import { fetchFixtures } from '../api';
 import Fixture from '../components/Fixture';
 import Fixtures from '../components/Fixtures';
 
 
-const fixturesLoader = ({request}) => {
-	console.log(request.url)
+const fixturesLoader = () => {
 	// const url = new URL(request.url)
 	// console.log(url)
 	return fetchFixtures()
 }
-
 
 const Matches = ({resultFilter}) => {
 
 	const {id : paramsId} = useParams()
 	const fixtures = useLoaderData()
 
+	
 	const teamFixtures = paramsId &&
-		fixtures.filter(({teams: {away: {id: awayId}, home: {id: homeId}}}) => awayId == paramsId || homeId == paramsId)
+	fixtures.filter(({teams: {away: {id: awayId}, home: {id: homeId}}}) => awayId == paramsId || homeId == paramsId)
+	
+	// const {team, setTeam} = useContext(Context)
+	// console.log(setTeam)
+	
+	// useEffect(() => {
+
+	// 	const {
+	// 		teams: {
+	// 			away: {id: awayId, name: awayTeam},
+	// 			home: {name: homeTeam}
+	// 		}
+	// 	} = teamFixtures[0]
+	
+	// 	awayId == paramsId ? setTeam(awayTeam) : setTeam(homeTeam)
+	// }, [paramsId])
 
 	
 	const filterTeamFixtures = paramsId ? 
