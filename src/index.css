@@ -31,8 +31,25 @@ body {
 	background: #171717;
 }
 
-.fixture:nth-child(1) {
-	border-right: '1px solid rgb(60,64,67)';
+.filter-button {
+	padding: 6px 26px;
+	font-style: normal;
+	font-weight: 800;
+	border: 1px solid rgb(60, 64, 67);
+	border-radius: 5px;
+	background-color: #202124;
+	color: #FFFFFF;
+	transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
+	display: flex;
+	place-items: center;
+	color: #bdc1c6;
 }
 
+.filter-button:hover {
+	cursor: pointer;
+}
+
+.filter-button img {
+	margin-right: .375em;
+}
 
