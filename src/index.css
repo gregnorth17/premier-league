@@ -43,10 +43,24 @@ body {
 	display: flex;
 	place-items: center;
 	color: #bdc1c6;
+	margin-right: .5em;
 }
+
+.filter-button:first-of-type {
+	margin-left: .5em;
+}
+
+/* .filter-button:focus {
+	background: #424548;
+} */
 
 .filter-button:hover {
 	cursor: pointer;
+	background: #424548;
+}
+
+.filter-button.selected {
+	background: #424548;
 }
 
 .filter-button img {
