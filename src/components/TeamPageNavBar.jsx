@@ -1,13 +1,13 @@
 import { Box, Typography } from '@mui/material';
-// import { useContext } from 'react';
+import { useContext } from 'react';
 import { Link, NavLink, useParams } from 'react-router-dom';
-// import { Context } from '../App';
+import { Context } from '../App';
 
 const TeamPageNavBar = () => {
-	// get team name and display it in the nav bar
+
 	const { id } = useParams()
 	
-	// const {team: {name}} = useContext(Context)
+	const {team} = useContext(Context)
 	
 	const style = {
 		textDecoration: 'none',
@@ -46,7 +46,7 @@ const TeamPageNavBar = () => {
 					}}>
 						{/* <img src={logo} alt="Premier League logo"/> */}
 					</Box>
-					<Typography whiteSpace='nowrap' color='#ffffff'>{name && name}</Typography>
+					<Typography whiteSpace='nowrap' color='#ffffff'>{team}</Typography>
 				</Link>
 			</Box>
 			<nav style={{ display: 'flex', justifyContent: 'center',  background: '#3F1052', marginBottom: '.5em'}}>

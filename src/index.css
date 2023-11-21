@@ -15,6 +15,14 @@
 	box-sizing: border-box;
 }
 
+.league-position-link {
+	cursor: pointer;
+}
+
+.league-position:hover {
+	background: #424548;
+}
+
 img {
 	max-width: 100%;
 }

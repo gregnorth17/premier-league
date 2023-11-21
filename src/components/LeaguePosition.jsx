@@ -1,18 +1,16 @@
-import { Box, Typography } from '@mui/material'
-import TableCell from '@mui/material/TableCell'
-import TableRow from '@mui/material/TableRow'
-// import { useContext } from 'react'
-import { Link, useParams } from 'react-router-dom'
-// import { Context } from '../App'
+import { useContext } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { Context } from '../App'
 
 import line from '../assets/draw.svg'
 import cross from '../assets/lose.svg'
 import tick from '../assets/win.svg'
 
 const LeaguePosition = ({team, homeTeam, awayTeam}) => {
-	// const { setTeam } = useContext(Context)
-	console.log(team)
+	const { setTeam } = useContext(Context)
+	// console.log(team)
 	const { id: paramsId } = useParams()
+	const navigate = useNavigate()
 
 	const {
 		form,
@@ -24,6 +22,8 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 		all: {played, win, draw, lose, goals: {for: goalsFor, against}}
 	} = team
 
+	const teamName = paramsId == id ? name : ""
+
 	const lastFive = [...form].map((match, index) => {
 		if(match === 'W') {return <img key={index} src={tick} />}
 		if(match === 'L') {return <img key={index} src={cross} />}
@@ -31,9 +31,12 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 	})
 
 
+	const handleClick = () => {
+		navigate(`${id}`)
+		setTeam(name)
+	}
 
-
-	// const teamNameLink = name.replace(/ /g, '').toLowerCase()
+	const teamNameLink = name.replace(/ /g, '').toLowerCase()
 
 	const promotionColor = {
 		"Promotion - Champions League (Group Stage: )" : "#4285F4",
@@ -57,48 +60,33 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 	}
 
 	return (
-		<TableRow sx={{
+		<>
+			<tr style={{
 					borderLeft: `${getLeftBorder(description)}`,
-					background: `${getBackgroundColor(name, homeTeam, awayTeam)}`,
-					'&:hover': {
-						background: '#424548'
-					}
-		}}>
-			<TableCell sx={[style, {display: 'flex', alignItems: 'center'}]}>
-					<Typography 
-						align='center' 
-						sx={{
-							width: '25px',
-							color: '#bdc1c6',
-							fontSize: '.875rem',
-							fontWeight: 'bold'
-						}}
-					>
-						{rank}
-					</Typography>
-					<Box 
-					sx={{
-					display: 'flex',
-					width: '25px',
-					margin: '0 .5em'}} 
-					>
-						<img src={logo} />
-					</Box>
-					<Link  style={{
-								textDecoration: 'none',
-								color: '#bdc1c6'
-					}} to={`${id}`}><Typography  sx={{fontSize: '14px'}}>{name}</Typography></Link>
-			</TableCell>
-			<TableCell sx={style} align="center">{played}</TableCell>
-			<TableCell sx={style} align="center">{win}</TableCell>
-			<TableCell sx={style} align="center">{draw}</TableCell>
-			<TableCell sx={style} align="center">{lose}</TableCell>
-			<TableCell sx={style} align="center">{goalsFor}</TableCell>
-			<TableCell sx={style} align="center">{against}</TableCell>
-			<TableCell sx={style} align="center">{goalsDiff}</TableCell>
-			<TableCell sx={style} align="center">{points}</TableCell>
-			<TableCell sx={style} align="center">{lastFive}</TableCell>
-		</TableRow>
+					background: `${getBackgroundColor(name, homeTeam, awayTeam)}`
+				}}
+				className='league-position'
+			>
+				<td style={style}>
+					<div style={{display: 'flex', alignItems: 'center'}}>
+						<div style={{marginRight: '.5em'}}>{rank}</div>
+						<div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: '.5em'}}>
+							<img style={{width: '25px', height: '25px'}} src={logo} alt="" />
+						</div>
+						<div onClick={() => handleClick()} className='league-position-link'  style={{color: '#bdc1c6'}}>{name}</div>
+					</div>
+				</td>
+				<td style={style} align="center">{played}</td>
+				<td style={style} align="center">{win}</td>
+				<td style={style} align="center">{draw}</td>
+				<td style={style} align="center">{lose}</td>
+				<td style={style} align="center">{goalsFor}</td>
+				<td style={style} align="center">{against}</td>
+				<td style={style} align="center">{goalsDiff}</td>
+				<td style={style} align="center">{points}</td>
+				<td style={style} align="center"><div style={{display: 'flex', justifyContent: 'center'}}>{lastFive}</div></td>
+			</tr>
+		</>
 	)
 }
 
