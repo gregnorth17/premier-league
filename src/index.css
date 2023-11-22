@@ -17,6 +17,7 @@
 
 .league-position-link {
 	cursor: pointer;
+	text-decoration: none;
 }
 
 .league-position:hover {

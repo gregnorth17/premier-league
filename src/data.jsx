@@ -17,6 +17,13 @@
 	}
 ]
 
+export const promotionColor = {
+		"Promotion - Champions League (Group Stage: )" : "#4285F4",
+		"Promotion - Europa League (Group Stage: )" : "#FA7B17",
+		"Promotion - Europa Conference League (Qualification: )" : "#34A853",
+		"Relegation - Championship" : "#EA4335"
+	}
+
 export const teamColors = [
 	{
 		name: 'Liverpool',

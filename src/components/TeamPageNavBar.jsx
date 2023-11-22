@@ -1,13 +1,10 @@
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Box, Typography } from '@mui/material';
-import { useContext } from 'react';
-import { Link, NavLink, useParams } from 'react-router-dom';
-import { Context } from '../App';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 
 const TeamPageNavBar = () => {
 
-	const { id } = useParams()
-	
-	const {team} = useContext(Context)
+	const { state } = useLocation()	
 	
 	const style = {
 		textDecoration: 'none',
@@ -44,19 +41,19 @@ const TeamPageNavBar = () => {
 						height: '35px',
 						mr: '.625em'
 					}}>
-						{/* <img src={logo} alt="Premier League logo"/> */}
 					</Box>
-					<Typography whiteSpace='nowrap' color='#ffffff'>{team}</Typography>
+					<ArrowBackIcon style={{color: '#fff', marginRight: '.25em'}} background='#fff' />
+					<Typography whiteSpace='nowrap' color='#ffffff'>{state}</Typography>
 				</Link>
 			</Box>
 			<nav style={{ display: 'flex', justifyContent: 'center',  background: '#3F1052', marginBottom: '.5em'}}>
-					<NavLink to='.' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
+					<NavLink end to='.' className='nav-link' style={({isActive}) => getStyles(isActive)}>
 						matches
 					</NavLink>
-					<NavLink to='table' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
+					<NavLink to='table' className='nav-link' style={({isActive}) => getStyles(isActive)}>
 						table
 					</NavLink>
-					<NavLink to='seasonstats' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
+					<NavLink to='seasonstats' className='nav-link' style={({isActive}) => getStyles(isActive)}>
 						stats
 					</NavLink>
 			</nav>

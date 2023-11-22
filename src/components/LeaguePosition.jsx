@@ -1,16 +1,12 @@
-import { useContext } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { Context } from '../App'
-
+import { Link, useParams } from 'react-router-dom'
 import line from '../assets/draw.svg'
 import cross from '../assets/lose.svg'
 import tick from '../assets/win.svg'
+import { promotionColor } from '../data'
 
 const LeaguePosition = ({team, homeTeam, awayTeam}) => {
-	const { setTeam } = useContext(Context)
-	// console.log(team)
+
 	const { id: paramsId } = useParams()
-	const navigate = useNavigate()
 
 	const {
 		form,
@@ -22,29 +18,12 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 		all: {played, win, draw, lose, goals: {for: goalsFor, against}}
 	} = team
 
-	const teamName = paramsId == id ? name : ""
-
 	const lastFive = [...form].map((match, index) => {
 		if(match === 'W') {return <img key={index} src={tick} />}
 		if(match === 'L') {return <img key={index} src={cross} />}
 		if(match === 'D') {return <img key={index} src={line} />}
 	})
-
-
-	const handleClick = () => {
-		navigate(`${id}`)
-		setTeam(name)
-	}
-
-	const teamNameLink = name.replace(/ /g, '').toLowerCase()
-
-	const promotionColor = {
-		"Promotion - Champions League (Group Stage: )" : "#4285F4",
-		"Promotion - Europa League (Group Stage: )" : "#FA7B17",
-		"Promotion - Europa Conference League (Qualification: )" : "#34A853",
-		"Relegation - Championship" : "#EA4335"
-	}
-
+	
 	const getLeftBorder = description => description ? `3px solid ${promotionColor[description]}` : '3px solid transparent'
 	
 	const getBackgroundColor = (name, probHomeTeam, probAwayTeam) => {
@@ -73,7 +52,10 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 						<div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: '.5em'}}>
 							<img style={{width: '25px', height: '25px'}} src={logo} alt="" />
 						</div>
-						<div onClick={() => handleClick()} className='league-position-link'  style={{color: '#bdc1c6'}}>{name}</div>
+						<Link to={`${id}`} className='league-position-link'  
+									style={{color: '#bdc1c6'}}
+									state={name}
+						>{name}</Link>
 					</div>
 				</td>
 				<td style={style} align="center">{played}</td>
