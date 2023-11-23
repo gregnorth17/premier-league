@@ -36,6 +36,10 @@ body {
 	background-color: #522763;
 }
 
+.team-page-nav-link:hover {
+	opacity: .5;
+}
+
 .match-details-nav-link:hover {
 	background: #171717;
 }
@@ -58,10 +62,6 @@ body {
 .filter-button:first-of-type {
 	margin-left: .5em;
 }
-
-/* .filter-button:focus {
-	background: #424548;
-} */
 
 .filter-button:hover {
 	cursor: pointer;

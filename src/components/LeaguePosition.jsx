@@ -54,7 +54,7 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 						</div>
 						<Link to={`${id}`} className='league-position-link'  
 									style={{color: '#bdc1c6'}}
-									state={name}
+									state={{name}}
 						>{name}</Link>
 					</div>
 				</td>

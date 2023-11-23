@@ -26,9 +26,83 @@ export const promotionColor = {
 
 export const teamColors = [
 	{
+		name: 'Arsenal',
+		background: '#EF0107',
+	},
+	{
+		name: 'Aston Villa',
+		background: '#670E36',
+	},
+	{
+		name: 'Bournemouth',
+		background: '#DA291C',
+	},
+	{
+		name: 'Brighton',
+		background: '#0057B8',
+	},
+	{
+		name: 'Brentford',
+		background: '#D20000',
+	},
+	{
+		name: 'Burnley',
+		background: '#6C1D45',
+	},
+	{
+		name: 'Chelsea',
+		background: '#034694',
+	},
+	{
+		name: 'Crystal Palace',
+		background: '#1B458F',
+	},
+	{
+		name: 'Everton',
+		background: '#003399',
+	},
+	{
+		name: 'Fulham',
+		background: '#000000',
+	},
+	{
 		name: 'Liverpool',
-		primary: '#C8102E',
-		secondary: '#00B2A9'
-		
+		background: '#C8102E',
+	},
+	{
+		name: 'Luton',
+		background: '#002D62',
+	},
+	{
+		name: 'Manchester City',
+		background: '#6CABDD',
+	},
+	{
+		name: 'Manchester United',
+		background: '#DA291C',
+	},
+	{
+		name: 'Newcastle',
+		background: '#241F20',
+	},
+	{
+		name: 'Nottingham Forest',
+		background: '#DD0000',
+	},
+	{
+		name: 'Sheffield Utd',
+		background: '#EE2737',
+	},
+	{
+		name: 'Tottenham',
+		background: '#132257',
+	},
+	{
+		name: 'West Ham',
+		background: '#7A263A',
+	},
+	{
+		name: 'Wolves',
+		background: '#FDB913',
 	}
 ]
