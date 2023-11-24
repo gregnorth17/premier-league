@@ -6,6 +6,7 @@ import Layout from './components/Layout'
 import { leagueTableLoader } from './components/LeagueTableLayout'
 import Lineups from './components/Lineups'
 import MatchDetailsLayout, { fixtureLoader } from './components/MatchDetailsLayout'
+import Players, { playersLoader } from './components/Players'
 import Stats, { probabilityLoader } from './components/Stats'
 import TeamPage, { teamPageLoader } from './components/TeamPage'
 import TeamPageLayout from './components/TeamPageLayout'
@@ -34,6 +35,7 @@ const App = () => {
 			<Route path=':id' element={<TeamPageLayout />}>
 				<Route index loader={fixturesLoader} action={teamPageLoader} element={<TeamPage />} />
 				<Route path='table' loader={leagueTableLoader} element={<Home />} />
+				<Route path='players' loader={playersLoader}  element={<Players />} />
 			</Route>
 			<Route path='matches/:fixtureId/' element={<MatchDetailsLayout />} loader={fixtureLoader}>
 				<Route index element={<Stats />} loader={probabilityLoader}  />

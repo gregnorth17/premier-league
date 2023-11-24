@@ -90,5 +90,32 @@ const fetchProbability = () => {
 	return data.response[0]
 }
 
-export { fetchFixture, fetchFixtures, fetchLeagueData, fetchProbability, fetchSeasonStats }
+const fetchPlayers = () => {
+  // fetch(`https://v3.football.api-sports.io/players/squads?team=40`, {
+	// 		headers: {
+	// 			"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357"
+	// 		}
+	// 	})
+	// 	.then(response => response.json())
+	// 	.then(data => {
+	// 		console.log(data)
+	// 		localStorage.setItem('players', JSON.stringify(data))
+	// 		return data
+	// 	})
+    // const res = localStorage.getItem('players')
+    // const data = JSON.parse(res)
+
+    const res = localStorage.getItem('players')
+    const data = JSON.parse(res)
+
+    return data.response[0]
+    
+}
+
+export {
+  fetchFixture,
+  fetchFixtures,
+  fetchLeagueData, fetchPlayers, fetchProbability,
+  fetchSeasonStats
+}
 

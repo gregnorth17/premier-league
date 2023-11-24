@@ -4,6 +4,7 @@ import cross from '../assets/lose.svg'
 import tick from '../assets/win.svg'
 import { promotionColor } from '../data'
 
+
 const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 
 	const { id: paramsId } = useParams()
