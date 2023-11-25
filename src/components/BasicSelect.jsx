@@ -3,11 +3,11 @@ import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
-// import { useContext } from 'react'
+import { useState } from 'react'
 // import { YearContext } from '../App'
 
 const BasicSelect = () => {
-	
+	const [seasonYear, setSeasonYear] = useState(2023)
 	// const {setSeasonYear, seasonYear} = useContext(YearContext)
 
   const handleChange = (event) => {

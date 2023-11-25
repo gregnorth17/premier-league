@@ -32,12 +32,12 @@ const App = () => {
 				<Route path='seasonstats' loader={seasonStatsLoader} element={<SeasonStats />} />
 				<Route path='*' element={<NotFound />} />
 			</Route>
-			<Route path=':id' element={<TeamPageLayout />}>
+			<Route path=':id' element={<TeamPageLayout />} errorElement={<Error />}>
 				<Route index loader={fixturesLoader} action={teamPageLoader} element={<TeamPage />} />
 				<Route path='table' loader={leagueTableLoader} element={<Home />} />
 				<Route path='players' loader={playersLoader}  element={<Players />} />
 			</Route>
-			<Route path='matches/:fixtureId/' element={<MatchDetailsLayout />} loader={fixtureLoader}>
+			<Route path='matches/:fixtureId/' element={<MatchDetailsLayout />} loader={fixtureLoader} errorElement={<Error />}>
 				<Route index element={<Stats />} loader={probabilityLoader}  />
 				<Route path='lineups' element={<Lineups />}  />
 			</Route>

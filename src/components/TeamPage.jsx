@@ -1,10 +1,8 @@
 import { useSearchParams } from 'react-router-dom'
-import Matches from '../pages/Matches'
-// import NavBar from './NavBar'
 import line from '../assets/draw.svg'
 import cross from '../assets/lose.svg'
 import tick from '../assets/win.svg'
-
+import Matches from '../pages/Matches'
 
 const teamPageLoader = ({ params }) => {
 	console.log(params)

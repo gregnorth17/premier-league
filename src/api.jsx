@@ -21,28 +21,33 @@ const headers =  {
 	// 		// setSeasonStats(data)
 	// 	})
 
-const seasonYear = new Date().getFullYear()
-
-const fetchLeagueData = () => {
-	const res = localStorage.getItem('league')
-	// if(!res.ok) {
+  // if(!res.ok) {
 	// 	throw {
 	// 		message: "Failed to fetch data", 
 	// 		statusText: res.statusText,
 	// 		status: res.status
 	// 	}
 	// }
-	// const res = localStorage.getItem('league')
-	const data = JSON.parse(res)
-	return data
+
+const seasonYear = new Date().getFullYear()
+
+const fetchLeagueData = async () => {
+  
+  const res = await fetch(`https://v3.football.api-sports.io/standings?league=39&season=${seasonYear}`, {headers})
+	
+  const data = await res.json()
+  
+  return data.response[0]
 }
 
-const fetchFixtures = () => {
-		const res = localStorage.getItem('fixtures')
-		const data = JSON.parse(res)
+const fetchFixtures = async () => {
+  const res = await fetch(`https://v3.football.api-sports.io/fixtures?league=39&season=${seasonYear}`, {headers})
 
-		return data
-
+  const data = await res.json()
+		// const res = localStorage.getItem('fixtures')
+		// const data = JSON.parse(res)
+  // console.log(data)
+  return data.response
 }
 
 const fetchFixture = () => {

@@ -4,7 +4,6 @@ import cross from '../assets/lose.svg'
 import tick from '../assets/win.svg'
 import { promotionColor } from '../data'
 
-
 const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 
 	const { id: paramsId } = useParams()
@@ -53,7 +52,7 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 						<div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: '.5em'}}>
 							<img style={{width: '25px', height: '25px'}} src={logo} alt="" />
 						</div>
-						<Link to={`${id}`} className='league-position-link'  
+						<Link to={`/${id}`} className='league-position-link'  
 									style={{color: '#bdc1c6'}}
 									state={{name}}
 						>{name}</Link>
