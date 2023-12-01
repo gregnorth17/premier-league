@@ -1,3 +1,4 @@
+
 const headers =  {
 				"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357",
 			}
@@ -31,23 +32,53 @@ const headers =  {
 
 const seasonYear = new Date().getFullYear()
 
-const fetchLeagueData = async () => {
-  
-  const res = await fetch(`https://v3.football.api-sports.io/standings?league=39&season=${seasonYear}`, {headers})
-	
-  const data = await res.json()
-  
-  return data.response[0]
+const url = new URL(document.location)
+console.log(url)
+
+const fetchLeagueData = () => {
+
+  //  const data = useQuery(['league'], () => {
+
+  //   return fetch(`https://v3.football.api-sports.io/standings?league=39&season=2023`, {headers})
+  //           .then(res => res.json())
+  //           .then(data => {
+  //             console.log(data)
+  //             return data.response[0]
+  //           })
+  // })
+
+  const getApiData = async () =>  {
+    const res = await fetch(`https://v3.football.api-sports.io/standings?league=39&season=${seasonYear}`, {headers})
+    const data = await res.json()
+    localStorage.setItem(`league${seasonYear}`, JSON.stringify(data.response[0]))
+
+    return data.response[0]
+  }
+
+  const checkLocalStorage = () => {
+      const data = localStorage.getItem(`league${seasonYear}`)
+      return data !== null ? JSON.parse(data) : getApiData()
+  }
+
+  return checkLocalStorage()
 }
 
 const fetchFixtures = async () => {
-  const res = await fetch(`https://v3.football.api-sports.io/fixtures?league=39&season=${seasonYear}`, {headers})
 
-  const data = await res.json()
-		// const res = localStorage.getItem('fixtures')
-		// const data = JSON.parse(res)
-  // console.log(data)
-  return data.response
+  const getApiData = async () =>  {
+    const res = await fetch(`https://v3.football.api-sports.io/fixtures?league=39&season=${seasonYear}`, {headers})
+    const data = await res.json()
+    localStorage.setItem(`fixtures${seasonYear}`, JSON.stringify(data.response[0]))
+
+    return data.response
+  }
+
+  const checkLocalStorage = () => {
+      const data = localStorage.getItem(`fixtures${seasonYear}`)
+      return data !== null ? JSON.parse(data) : getApiData()
+  }
+
+  return checkLocalStorage()
 }
 
 const fetchFixture = () => {

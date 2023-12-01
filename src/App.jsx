@@ -1,4 +1,5 @@
-import { createContext, useState } from 'react'
+import { createContext } from 'react'
+// import { QueryClient, QueryClientProvider } from 'react-query'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import './App.css'
 import Error from './components/Error'
@@ -21,9 +22,8 @@ const App = () => {
 	// const YearContext = createContext()
 	// export { YearContext }
 	
+  // const client = new QueryClient()
 	
-	const [team, setTeam] = useState(null)
-	console.log(team)
 	const router = createBrowserRouter(createRoutesFromElements(
 		<>
 			<Route path='/' element={<Layout />} >
@@ -34,7 +34,7 @@ const App = () => {
 			</Route>
 			<Route path=':id' element={<TeamPageLayout />} errorElement={<Error />}>
 				<Route index loader={fixturesLoader} action={teamPageLoader} element={<TeamPage />} />
-				<Route path='table' loader={leagueTableLoader} element={<Home />} />
+				{/* <Route path='table' loader={leagueTableLoader} element={<Home />} /> */}
 				<Route path='players' loader={playersLoader}  element={<Players />} />
 			</Route>
 			<Route path='matches/:fixtureId/' element={<MatchDetailsLayout />} loader={fixtureLoader} errorElement={<Error />}>
@@ -45,9 +45,11 @@ const App = () => {
 	))
 
   return (
-		<Context.Provider value={{team, setTeam}}>
-			<RouterProvider router={router} />
-		</Context.Provider>
+    // <QueryClientProvider client={client}>
+      <Context.Provider>
+        <RouterProvider router={router} />
+      </Context.Provider>
+    // </QueryClientProvider>
   )
 }
 	

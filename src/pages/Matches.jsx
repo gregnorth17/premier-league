@@ -1,4 +1,3 @@
-import { useContext, useEffect } from 'react';
 import { useLoaderData, useParams, } from 'react-router-dom';
 // import { Context } from '../App';
 import { fetchFixtures } from '../api';
@@ -16,6 +15,7 @@ const Matches = ({resultFilter}) => {
 
 	const {id : paramsId} = useParams()
 	const fixtures = useLoaderData()
+
 
 	
 	const teamFixtures = paramsId &&
