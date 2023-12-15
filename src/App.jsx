@@ -1,10 +1,10 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { createContext } from 'react'
-// import { QueryClient, QueryClientProvider } from 'react-query'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import './App.css'
 import Error from './components/Error'
 import Layout from './components/Layout'
-import { leagueTableLoader } from './components/LeagueTableLayout'
 import Lineups from './components/Lineups'
 import MatchDetailsLayout, { fixtureLoader } from './components/MatchDetailsLayout'
 import Players, { playersLoader } from './components/Players'
@@ -16,40 +16,50 @@ import Matches, { fixturesLoader } from './pages/Matches'
 import NotFound from './pages/NotFound'
 import SeasonStats, { seasonStatsLoader } from './pages/SeasonStats'
 
+
 const Context = createContext()
+const queryClient = new QueryClient()
 
 const App = () => {
 	// const YearContext = createContext()
 	// export { YearContext }
 	
-  // const client = new QueryClient()
-	
+	const Test = () => {
+    return <h1>This is a Test</h1>
+  }
+
 	const router = createBrowserRouter(createRoutesFromElements(
 		<>
-			<Route path='/' element={<Layout />} >
-				<Route index loader={leagueTableLoader} element={<Home  />} errorElement={<Error />}/>
-				<Route path='matches' loader={fixturesLoader} element={<Matches />} />
-				<Route path='seasonstats' loader={seasonStatsLoader} element={<SeasonStats />} />
-				<Route path='*' element={<NotFound />} />
-			</Route>
-			<Route path=':id' element={<TeamPageLayout />} errorElement={<Error />}>
-				<Route index loader={fixturesLoader} action={teamPageLoader} element={<TeamPage />} />
-				{/* <Route path='table' loader={leagueTableLoader} element={<Home />} /> */}
-				<Route path='players' loader={playersLoader}  element={<Players />} />
-			</Route>
-			<Route path='matches/:fixtureId/' element={<MatchDetailsLayout />} loader={fixtureLoader} errorElement={<Error />}>
-				<Route index element={<Stats />} loader={probabilityLoader}  />
-				<Route path='lineups' element={<Lineups />}  />
-			</Route>
+     
+        <Route path='/' element={<Layout />} >
+          {/* <Route index loader={leagueTableLoader} element={<Home  />} errorElement={<Error />}/> */}
+          <Route index  
+                element={<Home  />} 
+                errorElement={<Error />}
+                // loader={leagueTableLoader(queryClient)}
+          />
+          <Route path='test' element={<Test />} />
+          <Route path='matches' loader={fixturesLoader} element={<Matches />} />
+          <Route path='seasonstats' loader={seasonStatsLoader} element={<SeasonStats />} />
+          <Route path='*' element={<NotFound />} />
+        </Route>
+        <Route path=':id' element={<TeamPageLayout />} errorElement={<Error />}>
+          <Route index loader={fixturesLoader} action={teamPageLoader} element={<TeamPage />} />
+          {/* <Route path='table' loader={leagueTableLoader} element={<Home />} /> */}
+          <Route path='players' loader={playersLoader}  element={<Players />} />
+        </Route>
+        <Route path='matches/:fixtureId/' element={<MatchDetailsLayout />} loader={fixtureLoader} errorElement={<Error />}>
+          <Route index element={<Stats />} loader={probabilityLoader}  />
+          <Route path='lineups' element={<Lineups />}  />
+        </Route>
 		</>
 	))
 
   return (
-    // <QueryClientProvider client={client}>
-      <Context.Provider>
-        <RouterProvider router={router} />
-      </Context.Provider>
-    // </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   )
 }
 	

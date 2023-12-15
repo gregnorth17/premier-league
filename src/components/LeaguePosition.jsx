@@ -5,9 +5,9 @@ import tick from '../assets/win.svg'
 import { promotionColor } from '../data'
 
 const LeaguePosition = ({team, homeTeam, awayTeam}) => {
-
+  console.log(team)
 	const { id: paramsId } = useParams()
-
+  
 	const {
 		form,
 		rank,

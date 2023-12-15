@@ -14,7 +14,8 @@ const TeamPage = () => {
 	const [searchParams, setSearchParams] = useSearchParams()
 
 	const resultFilter = searchParams.get('result')
-
+  const url = new URL(document.location)
+	console.log(url)
 	return (
 		<>
 		<div>
