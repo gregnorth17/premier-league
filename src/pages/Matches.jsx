@@ -1,25 +1,49 @@
-import { useLoaderData, useParams, } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
 // import { Context } from '../App';
-import { fetchFixtures } from '../api';
-import Fixture from '../components/Fixture';
-import Fixtures from '../components/Fixtures';
+import CircularProgress from '@mui/material/CircularProgress'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import Fixture from '../components/Fixture'
+import Fixtures from '../components/Fixtures'
 
-
-const fixturesLoader = () => {
-	// const url = new URL(request.url)
-	// console.log(url)
-	return fetchFixtures()
-}
+// const fixturesLoader = () => {
+// 	// const url = new URL(request.url)
+// 	// console.log(url)
+// 	return fetchFixtures()
+// }
 
 const Matches = ({resultFilter}) => {
 
-	const {id : paramsId} = useParams()
-	const fixtures = useLoaderData()
+  const headers =  {
+				"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357",
+			}
 
+	const {id : paramsId} = useParams()
+  
+  const getFixtures = async () => {
+    return await axios.get(`https://v3.football.api-sports.io/fixtures?league=39&season=2023`, {headers}).then(res => res.data)
+  }
+
+  const oneDay = 60000 * 60 * 24
+
+  const {data, isLoading, error} = useQuery({
+    queryKey: ['fixtures'],
+    queryFn: () => getFixtures(),
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchInterval: oneDay
+  })
+
+  // console.log(fixtures)
+
+  console.log(data)
+
+  if(isLoading) return <CircularProgress />
+  if(error) return <h1>Something went wrong, try again later</h1>
 
 	
 	const teamFixtures = paramsId &&
-	fixtures.filter(({teams: {away: {id: awayId}, home: {id: homeId}}}) => awayId == paramsId || homeId == paramsId)
+	data?.response.filter(({teams: {away: {id: awayId}, home: {id: homeId}}}) => awayId == paramsId || homeId == paramsId)
 	
 	// const {team, setTeam} = useContext(Context)
 	// console.log(setTeam)
@@ -39,7 +63,7 @@ const Matches = ({resultFilter}) => {
 	
 	const filterTeamFixtures = paramsId ? 
 	
-		teamFixtures.filter(({teams: {away: {id: awayId, winner: awayWin}, home: {id: homeId, winner: homeWin}}}) => {
+		teamFixtures?.filter(({teams: {away: {id: awayId, winner: awayWin}, home: {id: homeId, winner: homeWin}}}) => {
 
 			if(resultFilter === 'draw' && awayWin === null) {return true}
 
@@ -61,7 +85,7 @@ const Matches = ({resultFilter}) => {
 			}
 	})
 	:
-	fixtures
+	data.response
 
 	return (
 		<Fixtures>
@@ -70,5 +94,5 @@ const Matches = ({resultFilter}) => {
 	)
 }
 
-export { fixturesLoader };
+// export { fixturesLoader };
 export default Matches

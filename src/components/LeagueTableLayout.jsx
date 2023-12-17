@@ -1,5 +1,4 @@
 // import { useLoaderData } from 'react-router-dom'
-import axios from 'axios'
 import LeagueTable from "../components/LeagueTable"
 import BasicSelect from './BasicSelect'
 import LeagueTableKey from './LeagueTableKey'
@@ -7,6 +6,8 @@ import LeagueTableKey from './LeagueTableKey'
 import { useQuery } from "@tanstack/react-query"
 import LeaguePosition from './LeaguePosition'
 // import { fetchLeagueData } from "../api"
+import CircularProgress from '@mui/material/CircularProgress'
+import axios from "axios"
 
 // const leagueTableQuery = () => ({
 //   queryKey: ['leagueTable'],
@@ -30,8 +31,8 @@ const headers =  {
 
 const getLeagueData = async () => {
   return await axios.get(`https://v3.football.api-sports.io/standings?league=39&season=2023`, {headers}).then(res => res.data)
+  // return await axios.get('https://dummyjson.com/products/1').then(res => res)
 }
-// return await axios.get('https://dummyjson.com/products/1').then(res => res)
 
 
 
@@ -40,19 +41,23 @@ const LeagueTableLayout = () => {
   // const { data } = useQuery(leagueTableQuery())
   // // const { data } = useQuery(leagueTableQuery())
   // console.log(data)
-  
+  const oneDay = 60000 * 60 * 24
 
-  const {data, error, isLoading} = useQuery({
+  const {data, isRefetching, isLoading, error} = useQuery({
     queryKey: ['leagueTable'],
     queryFn: () => getLeagueData(),
-    staleTime: 60000
+    // staleTime: 60000,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchInterval: oneDay
   })
-      
+  console.log(isRefetching)    
   console.log(data)
   // // const {league: {standings: [standings]}} = data
   // if(isLoading) {return <h2>Loading ...</h2>}
 
-  if(isLoading) return <h1>Loading...</h1>
+  if(isLoading) return <CircularProgress />
+  if(error) return <h1>Something went wrong, try again later</h1>
 
 	return (
 		<>
@@ -61,7 +66,7 @@ const LeagueTableLayout = () => {
         
         {/* {data[0].form} */}
         {/* {data?.title} */}
-				{data.response[0].league.standings[0]?.map((team, {id}) => <LeaguePosition key={id} team={team} />)}
+				{data?.response[0]?.league?.standings[0]?.map((team, {id}) => <LeaguePosition key={id} team={team} />)}
 			</LeagueTable>
 			<LeagueTableKey />
 		</>

@@ -6,15 +6,15 @@ import './App.css'
 import Error from './components/Error'
 import Layout from './components/Layout'
 import Lineups from './components/Lineups'
-import MatchDetailsLayout, { fixtureLoader } from './components/MatchDetailsLayout'
+import MatchDetailsLayout from './components/MatchDetailsLayout'
 import Players, { playersLoader } from './components/Players'
 import Stats, { probabilityLoader } from './components/Stats'
-import TeamPage, { teamPageLoader } from './components/TeamPage'
+import TeamPage from './components/TeamPage'
 import TeamPageLayout from './components/TeamPageLayout'
 import Home from './pages/Home'
-import Matches, { fixturesLoader } from './pages/Matches'
+import Matches from './pages/Matches'
 import NotFound from './pages/NotFound'
-import SeasonStats, { seasonStatsLoader } from './pages/SeasonStats'
+import SeasonStats from './pages/SeasonStats'
 
 
 const Context = createContext()
@@ -30,28 +30,27 @@ const App = () => {
 
 	const router = createBrowserRouter(createRoutesFromElements(
 		<>
-     
-        <Route path='/' element={<Layout />} >
-          {/* <Route index loader={leagueTableLoader} element={<Home  />} errorElement={<Error />}/> */}
-          <Route index  
-                element={<Home  />} 
-                errorElement={<Error />}
-                // loader={leagueTableLoader(queryClient)}
-          />
-          <Route path='test' element={<Test />} />
-          <Route path='matches' loader={fixturesLoader} element={<Matches />} />
-          <Route path='seasonstats' loader={seasonStatsLoader} element={<SeasonStats />} />
-          <Route path='*' element={<NotFound />} />
-        </Route>
-        <Route path=':id' element={<TeamPageLayout />} errorElement={<Error />}>
-          <Route index loader={fixturesLoader} action={teamPageLoader} element={<TeamPage />} />
-          {/* <Route path='table' loader={leagueTableLoader} element={<Home />} /> */}
-          <Route path='players' loader={playersLoader}  element={<Players />} />
-        </Route>
-        <Route path='matches/:fixtureId/' element={<MatchDetailsLayout />} loader={fixtureLoader} errorElement={<Error />}>
-          <Route index element={<Stats />} loader={probabilityLoader}  />
-          <Route path='lineups' element={<Lineups />}  />
-        </Route>
+      <Route path='/' element={<Layout />} >
+        {/* <Route index loader={leagueTableLoader} element={<Home  />} errorElement={<Error />}/> */}
+        <Route index  
+              element={<Home  />} 
+              errorElement={<Error />}
+              // loader={leagueTableLoader(queryClient)}
+        />
+        <Route path='test' element={<Test />} />
+        <Route path='matches'  element={<Matches />} />
+        <Route path='seasonstats' element={<SeasonStats />} />
+        <Route path='*' element={<NotFound />} />
+      </Route>
+      <Route path=':id' element={<TeamPageLayout />} errorElement={<Error />}>
+        <Route index element={<TeamPage />} />
+        {/* <Route path='table' loader={leagueTableLoader} element={<Home />} /> */}
+        <Route path='players' loader={playersLoader}  element={<Players />} />
+      </Route>
+      <Route path='matches/:fixtureId/' element={<MatchDetailsLayout />} errorElement={<Error />}>
+        <Route index element={<Stats />} loader={probabilityLoader}  />
+        <Route path='lineups' element={<Lineups />}  />
+      </Route>
 		</>
 	))
 
