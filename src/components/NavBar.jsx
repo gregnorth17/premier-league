@@ -52,9 +52,6 @@ const NavBar = () => {
 					<NavLink to='.' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
 						table
 					</NavLink>
-					<NavLink to='test' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
-						test
-					</NavLink>
 					<NavLink to='seasonstats' className='nav-link' style={({isActive}) => isActive ? activeStyle : style}>
 						stats
 					</NavLink>

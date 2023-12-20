@@ -23,28 +23,17 @@ const queryClient = new QueryClient()
 const App = () => {
 	// const YearContext = createContext()
 	// export { YearContext }
-	
-	const Test = () => {
-    return <h1>This is a Test</h1>
-  }
 
 	const router = createBrowserRouter(createRoutesFromElements(
 		<>
       <Route path='/' element={<Layout />} >
-        {/* <Route index loader={leagueTableLoader} element={<Home  />} errorElement={<Error />}/> */}
-        <Route index  
-              element={<Home  />} 
-              errorElement={<Error />}
-              // loader={leagueTableLoader(queryClient)}
-        />
-        <Route path='test' element={<Test />} />
+        <Route index element={<Home  />} errorElement={<Error />}/>
         <Route path='matches'  element={<Matches />} />
         <Route path='seasonstats' element={<SeasonStats />} />
         <Route path='*' element={<NotFound />} />
       </Route>
       <Route path=':id' element={<TeamPageLayout />} errorElement={<Error />}>
         <Route index element={<TeamPage />} />
-        {/* <Route path='table' loader={leagueTableLoader} element={<Home />} /> */}
         <Route path='players' loader={playersLoader}  element={<Players />} />
       </Route>
       <Route path='matches/:fixtureId/' element={<MatchDetailsLayout />} errorElement={<Error />}>

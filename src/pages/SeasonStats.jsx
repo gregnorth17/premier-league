@@ -1,8 +1,8 @@
 import Paper from '@mui/material/Paper'
 import TableContainer from '@mui/material/TableContainer'
-// import SeasonStatsTable from '../components/SeasonStatsTable'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
+import SeasonStatsTable from '../components/SeasonStatsTable'
 
 // const seasonStatsLoader = ({params}) => {
 // 	console.log(params)
@@ -25,8 +25,8 @@ const SeasonStats = () => {
 	const tableTitles = ['Goals', 'Assists', 'Yellow Cards', 'Red Cards']
 
   const getSeasonStats = () => (
-    Promise.all(endPoints.map(endPoint => axios.get(`${endPoint}, ${headers}`)
-                                             .then(res => console.log(res))))
+    Promise.all(endPoints.map(endPoint => axios.get(`${endPoint}`,{headers})
+                                             .then(res => [...res.data.response])))
   )
 
   const oneDay = 6000 * 6 * 24
@@ -43,7 +43,7 @@ const SeasonStats = () => {
 
 	return (
 		<TableContainer sx={{ maxWidth: '752px', background: '#202124', margin: '0 auto' }} component={Paper}>
-				{/* {seasonStats.map((stats, index) => <SeasonStatsTable key={index} stats={stats} title={tableTitles[index]} />)} */}
+				{data?.map((stats, index) => <SeasonStatsTable key={index} stats={stats} title={tableTitles[index]} />)}
 		</TableContainer>
 	)
 }
