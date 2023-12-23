@@ -8,7 +8,7 @@ import Layout from './components/Layout'
 import Lineups from './components/Lineups'
 import MatchDetailsLayout from './components/MatchDetailsLayout'
 import Players, { playersLoader } from './components/Players'
-import Stats, { probabilityLoader } from './components/Stats'
+import Stats from './components/Stats'
 import TeamPage from './components/TeamPage'
 import TeamPageLayout from './components/TeamPageLayout'
 import Home from './pages/Home'
@@ -37,7 +37,7 @@ const App = () => {
         <Route path='players' loader={playersLoader}  element={<Players />} />
       </Route>
       <Route path='matches/:fixtureId/' element={<MatchDetailsLayout />} errorElement={<Error />}>
-        <Route index element={<Stats />} loader={probabilityLoader}  />
+        <Route index element={<Stats />} />
         <Route path='lineups' element={<Lineups />}  />
       </Route>
 		</>

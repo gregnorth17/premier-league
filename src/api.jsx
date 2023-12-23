@@ -1,3 +1,6 @@
+// import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+
 const headers =  {
 				"x-apisports-key": "e6ada454a96b14b4c730492bfbac7357",
 			}
@@ -33,6 +36,35 @@ const seasonYear = new Date().getFullYear()
 
 const url = new URL(document.location)
 // console.log(url)
+
+export const getFixtureData = async fixtureId => {
+    return await axios.get(`https://v3.football.api-sports.io/fixtures?id=${fixtureId}`, {headers})
+  }
+
+const endPoints = [
+  `https://v3.football.api-sports.io/players/topscorers?league=39&season=2023`,
+  `https://v3.football.api-sports.io/players/topassists?league=39&season=2023`,
+  `https://v3.football.api-sports.io/players/topyellowcards?league=39&season=2023`,
+  `https://v3.football.api-sports.io/players/topredcards?league=39&season=2023`
+]
+
+export const getSeasonStats = () => (
+  Promise.all(endPoints.map(endPoint => axios.get(`${endPoint}`,{headers})
+  .then(res => [...res.data.response])))
+  )
+
+
+
+// export const useFixtureData = (fixtureId) => {
+//   return useQuery({
+//     queryKey: ['matchDetails', fixtureId],
+//     queryFn: () => getFixtureData(fixtureId),
+//     refetchOnMount: false,
+//     refetchOnWindowFocus: false
+//   })
+// }
+
+
 
 const fetchLeagueData = () => {
 

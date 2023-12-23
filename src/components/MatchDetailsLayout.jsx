@@ -1,30 +1,28 @@
-import { Outlet, useLoaderData } from 'react-router-dom'
-import { fetchFixture } from '../api'
+// import { useParams } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import { Outlet, useParams } from 'react-router-dom'
+import { getFixtureData } from '../api'
 import MatchDetails from './MatchDetails'
 import MatchDetailsNav from "./MatchDetailsNav"
 
-const fixtureLoader = ( {params} ) => {
-	console.log(params)
-	return fetchFixture()
-}
-
 const MatchDetailsLayout = () => {
-	
-	const fixture = useLoaderData()
-	// console.log(fixture)
-	const {statistics, lineups} = fixture
-	// console.log(statistics, lineups)
+
+	const { fixtureId } = useParams()
+  
+  const { data, isLoading } = useQuery({
+      queryKey: ['matchDetails', fixtureId],
+      queryFn: () => getFixtureData(fixtureId)
+    })
+  
 	return (
 		<>
-			<MatchDetails fixture={fixture}  />
+			<MatchDetails fixture={data?.data.response[0]}  />
 			<div style ={{background: '#212121', maxWidth: '632px', margin: '0 auto'}}>
 				<MatchDetailsNav />
-				<Outlet context={{statistics, lineups}}  />
+				<Outlet context={data?.data.response[0]}  />
 			</div>
 		</>
 	)
-	
 }
 
-export { fixtureLoader }
 export default MatchDetailsLayout

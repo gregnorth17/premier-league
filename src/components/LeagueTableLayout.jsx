@@ -36,7 +36,7 @@ const getLeagueData = async () => {
 
 
 
-const LeagueTableLayout = () => {
+const LeagueTableLayout = ({homeTeam, awayTeam}) => {
 
   // const { data } = useQuery(leagueTableQuery())
   // // const { data } = useQuery(leagueTableQuery())
@@ -63,10 +63,7 @@ const LeagueTableLayout = () => {
 		<>
       <BasicSelect />
 			<LeagueTable>
-        
-        {/* {data[0].form} */}
-        {/* {data?.title} */}
-				{data?.response[0]?.league?.standings[0]?.map((team, {id}) => <LeaguePosition key={id} team={team} />)}
+				{data?.response[0].league.standings[0].map((team, {id}) => <LeaguePosition key={id} team={team} homeTeam={homeTeam} awayTeam={awayTeam} />)}
 			</LeagueTable>
 			<LeagueTableKey />
 		</>
