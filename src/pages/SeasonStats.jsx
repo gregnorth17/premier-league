@@ -1,13 +1,9 @@
+import CircularProgress from '@mui/material/CircularProgress'
 import Paper from '@mui/material/Paper'
 import TableContainer from '@mui/material/TableContainer'
 import { useQuery } from '@tanstack/react-query'
 import { getSeasonStats } from '../api'
 import SeasonStatsTable from '../components/SeasonStatsTable'
-
-// const seasonStatsLoader = ({params}) => {
-// 	console.log(params)
-// 	return fetchSeasonStats()
-// }
 
 const SeasonStats = () => {
     
@@ -15,7 +11,7 @@ const SeasonStats = () => {
 
   const oneDay = 6000 * 6 * 24
 
-  const {data} = useQuery({
+  const {data, isLoading, error} = useQuery({
     queryKey: ['seasonStats'],
     queryFn: () => getSeasonStats(),
     refetchOnMount: false,
@@ -23,7 +19,8 @@ const SeasonStats = () => {
     refetchInterval: oneDay
   })
 
-  console.log(data)
+  if(isLoading) return <CircularProgress />
+  if(error) return <h1>Something went wrong, try again later</h1>
 
 	return (
 		<TableContainer sx={{ maxWidth: '752px', background: '#202124', margin: '0 auto' }} component={Paper}>
@@ -32,6 +29,4 @@ const SeasonStats = () => {
 	)
 }
 
-
-// export { seasonStatsLoader }
 export default SeasonStats

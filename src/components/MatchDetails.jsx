@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 
 const MatchDetails = ({fixture}) => {
-  console.log(fixture)
   
   try {
     const {

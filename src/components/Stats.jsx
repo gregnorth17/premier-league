@@ -1,44 +1,44 @@
-// import { Box, Typography } from '@mui/material';
-import { useOutletContext } from 'react-router-dom';
-// import { fetchLeagueData, fetchProbability } from '../api';
-// import LeagueTable from './LeagueTable';
-import LeagueTableLayout from './LeagueTableLayout';
-// import LeaguePosition from './LeaguePosition';
-import MatchStats from './MatchStats';
-// import Probability from './Probability';
-// import LeagueTableLayout from './LeagueTableLayout';
-
-
-// const probabilityLoader = () => (fetchProbability())
+// import { Box, Typography } from '@mui/material'
+import CircularProgress from '@mui/material/CircularProgress'
+import { useQuery } from '@tanstack/react-query'
+import { useOutletContext, useParams } from 'react-router-dom'
+import { getProbability } from '../api'
+import LeagueTableLayout from './LeagueTableLayout'
+import MatchStats from './MatchStats'
+import Probability from './Probability'
 
 const Stats = () => {
+
+  const { fixtureId } = useParams()
   
-	// const {statistics} = useOutletContext()
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['probability'],
+    queryFn: () => getProbability(fixtureId),
+    refetchOnMount: false,
+    refetchOnWindowFocus: false
+  })
+
   try {
     const outletContext = useOutletContext()
-    console.log(outletContext)
-    // const {predictions: {percent}, teams} = useLoaderData()
-    // console.log(teams)
-    // const {league: {standings: [standings]}} = fetchLeagueData()
   
+    if(isLoading) return <CircularProgress />
+    if(error) return <h1>Something went wrong, try again later</h1>
+
     return (
-      // <h1>ahoy there</h1>
-      // statistics.length !== 0 &&
-      // <>
-      // 	<Probability percent={percent} teams={teams} />
-      // 	<h3 style={{textAlign: 'center', fontSize: '.75rem', color: '#bdc1c6', paddingTop: '1.25em'}}>STANDINGS</h3>
-      // 	<div style={{width: '97%', margin: '0 auto'}}>
-      // 		<LeagueTable>
-      // 			{standings.map((team, {id}) => {
-      // 				return <LeaguePosition  key={id} team={team} homeTeam={teams.home.name} awayTeam={teams.away.name} />
-      // 			})}
-      // 		</LeagueTable>
-      // 		<LeagueTableKey />
-      // 	</div>
-      // </>
-      // :
+      outletContext.statistics.length > 0 ?
       <>
         <MatchStats statistics={outletContext?.statistics} />
+        <h3 style={{textAlign: 'center', fontSize: '.75rem', color: '#bdc1c6', paddingTop: '1.25em'}}>STANDINGS</h3>
+        <div style={{width: '97%', margin: '0 auto'}}>
+          <LeagueTableLayout 
+            homeTeam={outletContext?.teams.home.name} 
+            awayTeam={outletContext?.teams.away.name} 
+          />
+        </div>
+      </>
+      :
+       <>
+        <Probability percent={data.data.response[0].predictions.percent} teams={data.data.response[0].teams} />
         <h3 style={{textAlign: 'center', fontSize: '.75rem', color: '#bdc1c6', paddingTop: '1.25em'}}>STANDINGS</h3>
         <div style={{width: '97%', margin: '0 auto'}}>
           <LeagueTableLayout 
@@ -53,5 +53,4 @@ const Stats = () => {
   }
 }
 
-// export { probabilityLoader };
 export default Stats
