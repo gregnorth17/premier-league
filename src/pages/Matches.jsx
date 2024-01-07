@@ -58,8 +58,6 @@ const Matches = ({resultFilter}) => {
 	:
 	data.response
 
-  console.log(filterTeamFixtures)
-
 	return (
 		<Fixtures>
 			{filterTeamFixtures.map(fixture => <Fixture key={fixture.fixture.id} fixture={fixture} />)}

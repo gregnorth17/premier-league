@@ -14,7 +14,6 @@ const Stats = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['probability'],
     queryFn: () => getProbability(fixtureId),
-    refetchOnMount: false,
     refetchOnWindowFocus: false
   })
 

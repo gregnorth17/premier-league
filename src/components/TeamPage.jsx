@@ -4,18 +4,12 @@ import cross from '../assets/lose.svg'
 import tick from '../assets/win.svg'
 import Matches from '../pages/Matches'
 
-const teamPageLoader = ({ params }) => {
-	console.log(params)
-	return null
-}
-
-const TeamPage = () => {
+export const TeamPage = () => {
 
 	const [searchParams, setSearchParams] = useSearchParams()
 
 	const resultFilter = searchParams.get('result')
-  const url = new URL(document.location)
-	console.log(url)
+
 	return (
 		<>
 		<div>
@@ -53,15 +47,9 @@ const TeamPage = () => {
 
 			</div>
 			<Matches resultFilter={resultFilter} />
-			{/* <Form>
-				<input type="text" placeholder='Name' />
-				<br />
-				<input type="text" placeholder='Email' />
-			</Form> */}
 		</div>
 		</>
 	)
 }
 
-export { teamPageLoader }
 export default TeamPage

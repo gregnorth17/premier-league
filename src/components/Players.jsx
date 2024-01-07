@@ -1,22 +1,30 @@
-import { useLoaderData } from 'react-router-dom'
-import { fetchPlayers } from '../api'
+import CircularProgress from '@mui/material/CircularProgress'
+import { useQuery } from '@tanstack/react-query'
+import { useParams } from 'react-router-dom'
+import { getPlayers } from '../api'
 
-
-const playersLoader = () => (fetchPlayers())
 
 const Players = () => {
-  const { players } = useLoaderData()
-  console.log(players)
+
+  const { id } = useParams()
+
+  const {data, isLoading, error } = useQuery({
+    queryKey: ['players'],
+    queryFn: () => getPlayers(id)
+  })
 
   const style = {
     maxWidth: '110px',
-    height: '190px',
+    maxHeight: '190px',
     border: '.5px solid #3c4043',
     borderRadius: '10px',
     overflow: 'hidden',
   }
 
-  const playersHTML = players.map(({photo, name, position, index}) => {
+  if(isLoading) return <CircularProgress />
+  if(error) return <h1>Something went wrong, try again later</h1>
+
+  const playersHTML = data?.data.response[0].players.map(({photo, name, position, index}) => {
     return (
       <div style={style} key={index}>
         <img src={photo} alt="player" />
@@ -28,17 +36,16 @@ const Players = () => {
 
 	return (
     <section style={{
-      display: 'flex',
-      // gridTemplateColumns: 'repeat(7, 1fr)'
-      margin: '0 auto',
-      flexWrap: 'wrap',
-      gap: '.75em',
-      width: '752px'
-      }}>
-      {playersHTML}
+        display: 'flex',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        gap: '.75em',
+        maxWidth: '752px',
+        margin: '0 auto'
+    }}>
+        {playersHTML}
     </section>
 	)
 }
 
-export { playersLoader }
 export default Players

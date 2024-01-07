@@ -22,7 +22,7 @@ const LeagueTableLayout = ({homeTeam, awayTeam}) => {
 
 	return (
 		<>
-			<LeagueTable>
+			<LeagueTable sx={{ maxWidth: '752px', marginX: 'auto'}}>
 				{data?.response[0].league.standings[0].map((team, {id}) => <LeaguePosition key={id} team={team} homeTeam={homeTeam} awayTeam={awayTeam} />)}
 			</LeagueTable>
 			<LeagueTableKey />
@@ -30,5 +30,4 @@ const LeagueTableLayout = ({homeTeam, awayTeam}) => {
 	)
 }
 
-// export { leagueTableLoader }
 export default LeagueTableLayout

@@ -1,25 +1,22 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import { Box, Typography } from '@mui/material'
-import { useEffect, useState } from 'react'
-import { Link, NavLink, useLoaderData, useLocation } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import { Context } from '../App'
 import { teamColors } from '../data'
 
 
 
 const TeamPageNavBar = () => {
-	const [teamName, setTeamName] = useState(null)
 	const [teamColor, setTeamColor] = useState(null)
-	const location = useLocation()
-  const data = useLoaderData()
-  console.log(data)
+  const { teamName } = useContext(Context)
 
 	useEffect(() => {
-		setTeamName(location.state.name)
-		setTeamColor(teamColors.filter(({name}) => name === location.state.name)
+		setTeamColor(teamColors.filter(({name}) => name === teamName)
 														.map(({background}) => background)
 								)
-	}, [])
-	
+	}, [teamName])
+
 	const style = {
 		textDecoration: 'none',
 		color: '#ffffff',
@@ -73,4 +70,5 @@ const TeamPageNavBar = () => {
 		</header>
 	)
 }
+
 export default TeamPageNavBar
