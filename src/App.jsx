@@ -21,6 +21,10 @@ const queryClient = new QueryClient()
 export const Context = createContext()
 
 const App = () => {
+
+  // Change fixtures to small screen sizes.
+  // Single fixture width is breaking it.
+
   const [teamName, setTeamName] = useState(null)
 
 	const router = createBrowserRouter(createRoutesFromElements(

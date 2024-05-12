@@ -5,8 +5,6 @@ import { Link, NavLink } from 'react-router-dom'
 import { Context } from '../App'
 import { teamColors } from '../data'
 
-
-
 const TeamPageNavBar = () => {
 	const [teamColor, setTeamColor] = useState(null)
   const { teamName } = useContext(Context)
@@ -47,9 +45,10 @@ const TeamPageNavBar = () => {
 					<Box 
 					sx={{
 						borderRadius: '50%',
-						width: '35px',
-						height: '35px',
-						mr: '.625em'
+						// width: '35px',
+						// height: '35px',
+						mr: '.625em',
+            p: '1em'
 					}}>
 					</Box>
 					<ArrowBackIcon style={{color: '#fff', marginRight: '.25em'}} background='#fff' />

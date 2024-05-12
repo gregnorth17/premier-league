@@ -2,12 +2,18 @@ import { Box } from '@mui/material'
 
 const Fixtures = ({children}) => {
 	return (
-		<Box sx={{
-			display: 'grid',
-			gridTemplateColumns: 'repeat(2, 322.5px)',
-			maxWidth: '650px',
-			margin: '0 auto'
-		}}>
+		<Box 
+      className='fixtures'
+      sx={{
+        display: 'grid',
+        // gridTemplateColumns: 'repeat(2, auto)',
+        
+        gridTemplateColumns: 'repeat(2, minmax(300px, 2fr) )',
+        maxWidth: '650px',
+        margin: '0 auto',
+        padding: '0 .5em'
+      }}
+    >
 			{children}
 		</Box>
 	)

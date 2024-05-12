@@ -1,7 +1,7 @@
 import CircularProgress from '@mui/material/CircularProgress'
 import { useQuery } from "@tanstack/react-query"
-// import { getLeagueData } from '../api'
-import axios from 'axios'
+import { getLeagueData } from '../api'
+// import axios from 'axios'
 import LeagueTable from "../components/LeagueTable"
 import LeaguePosition from './LeaguePosition'
 import LeagueTableKey from './LeagueTableKey'
@@ -10,10 +10,10 @@ const LeagueTableLayout = ({homeTeam, awayTeam}) => {
 
   const oneDay = 60000 * 60 * 24
 
-  const getLeagueData = async () => {
-    return await axios.get('/.netlify/functions/leagueDataApi').then(res => res.data)
-    // console.log(data)
-  }
+  // const getLeagueData = async () => {
+  //   return await axios.get('/.netlify/functions/leagueDataApi').then(res => res.data)
+  //   // console.log(data)
+  // }
 
   const {data, isLoading, error} = useQuery({
     queryKey: ['leagueTable'],
