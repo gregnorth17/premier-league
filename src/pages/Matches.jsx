@@ -13,7 +13,7 @@ const Matches = ({resultFilter}) => {
 
   const oneDay = 60000 * 60 * 24
 
-  const {data, isLoading, error} = useQuery({
+  const {data, isLoading} = useQuery({
     queryKey: ['fixtures'],
     queryFn: () => getFixtures(),
     refetchOnMount: false,
@@ -21,8 +21,11 @@ const Matches = ({resultFilter}) => {
     refetchInterval: oneDay
   })
 
+  console.log(data)
+
   if(isLoading) return <Box sx={{ textAlign: 'center' }}><CircularProgress  /></Box>
-  if(error) return <h1>Something went wrong, try again later</h1>
+  if(data.response.length === 0) return <h1 className='error'>Something went wrong, try again later</h1>
+
 
 	const teamFixtures = paramsId &&
     data?.response.filter(({teams: {away: {id: awayId}, home: {id: homeId}}}) => awayId == paramsId || homeId == paramsId)

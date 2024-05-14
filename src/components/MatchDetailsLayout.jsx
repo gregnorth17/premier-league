@@ -11,13 +11,14 @@ const MatchDetailsLayout = () => {
 
 	const { fixtureId } = useParams()
   
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading } = useQuery({
       queryKey: ['matchDetails', fixtureId],
       queryFn: () => getFixtureData(fixtureId)
     })
 
   if(isLoading) return <Box sx={{ textAlign: 'center' }}><CircularProgress /></Box>
-  if(error) return <h1>Something went wrong, try again later</h1>
+  if(data.response.length === 0) return <h1 className='error'>Something went wrong, try again later</h1>
+  
   
 	return (
 		<>

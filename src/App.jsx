@@ -22,16 +22,16 @@ export const Context = createContext()
 
 const App = () => {
   // change or make so you can pick year of league
-  // error element
+  // hide api key
+  // throttle api use
   // match detail small screens
   // lineup small screens
   // players page doesn't load players
   // sort out folders and sub folders
-  // team nav bar focus is the opposite
   // animations from motionmaybe prem logo instead of circle
 
   const [teamName, setTeamName] = useState(localStorage.getItem('team'))
-
+  
 	const router = createBrowserRouter(createRoutesFromElements(
 		<>
       <Route path='/' element={<Layout />} >

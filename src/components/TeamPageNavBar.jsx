@@ -17,7 +17,7 @@ const TeamPageNavBar = () => {
 
 	const style = {
 		textDecoration: 'none',
-		color: '#ffffff',
+		color: 'rgb(154, 160, 166)',
 		textTransform: 'uppercase',
 		padding: '1em 1.5em',
 		borderBottom: '3px solid transparent',
@@ -27,7 +27,7 @@ const TeamPageNavBar = () => {
 
 	const activeStyle = {
 		textDecoration: 'none',
-		color: '#fff',
+		color: '#ffffff',
 		textTransform: 'uppercase',
 		padding: '1em 1.5em',
 		borderBottom: '3px solid #fff',

@@ -14,7 +14,7 @@ const SeasonStats = () => {
 
   const oneDay = 6000 * 6 * 24
 
-  const {data, isLoading, error} = useQuery({
+  const {data, isLoading} = useQuery({
     queryKey: ['seasonStats'],
     queryFn: () => getSeasonStats(),
     refetchOnMount: false,
@@ -23,7 +23,7 @@ const SeasonStats = () => {
   })
 
   if(isLoading) return <Box sx={{ textAlign: 'center' }}><CircularProgress  /></Box>
-  if(error) return <h1>Something went wrong, try again later</h1>
+  if(data[0].length === 0) return <h1 className='error'>Something went wrong, try again later</h1>
 
 	return (
     <Container>
