@@ -7,7 +7,7 @@ import LeaguePosition from './LeaguePosition'
 import LeagueTableKey from './LeagueTableKey'
 
 const LeagueTableLayout = ({homeTeam, awayTeam}) => {
-
+  // check error
   const oneDay = 60000 * 60 * 24
 
   // const getLeagueData = async () => {
@@ -23,8 +23,22 @@ const LeagueTableLayout = ({homeTeam, awayTeam}) => {
     refetchInterval: oneDay
   })
 
+  // const query = useQuery({
+  //   queryKey: ['leagueTable'],
+  //   queryFn: () => getLeagueData(),
+  //   refetchOnMount: false,
+  //   refetchOnWindowFocus: false,
+  //   refetchInterval: oneDay
+  // })
+
+  // console.log(query)
+  
+
+  // console.log(data)
+  // console.log(error)
+
   if(isLoading) return <Box sx={{ textAlign: 'center' }}><CircularProgress  /></Box>
-  if(error) return <h1>Something went wrong, try again later</h1>
+  // if(error) return <h1>Something went wrong, try again later</h1>
 
 	return (
 		<>

@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
@@ -21,7 +22,7 @@ const Players = () => {
     overflow: 'hidden',
   }
 
-  if(isLoading) return <CircularProgress />
+  if(isLoading) return <Box sx={{ textAlign: 'center' }}><CircularProgress /></Box>
   if(error) return <h1>Something went wrong, try again later</h1>
 
   const playersHTML = data?.data.response[0].players.map(({photo, name, position, index}) => {

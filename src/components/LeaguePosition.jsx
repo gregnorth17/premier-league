@@ -10,9 +10,9 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 	
   const { id: paramsId } = useParams()
   const {setTeamName} = useContext(Context)
-  
+
 	const {
-		form,
+    form,
 		rank,
 		goalsDiff,
 		points,
@@ -20,6 +20,11 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 		team: {logo, id, name},
 		all: {played, win, draw, lose, goals: {for: goalsFor, against}}
 	} = team
+  
+  const storeTeamName = name => {
+    setTeamName(name)
+    localStorage.setItem('team', name)
+  }
 
 	const lastFive = [...form].map((match, index) => {
 		if(match === 'W') {return <img key={index} src={tick} />}
@@ -55,11 +60,10 @@ const LeaguePosition = ({team, homeTeam, awayTeam}) => {
 						<div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', marginRight: '.5em'}}>
 							<img style={{width: '25px', height: '25px'}} src={logo} alt="" />
 						</div>
-						<Link onClick={() => setTeamName(name)} 
+						<Link onClick={() => storeTeamName(name)} 
                   to={`/${id}`} 
                   className='league-position-link'  
 									style={{color: '#bdc1c6'}}
-									// state={{name}}
 						>{name}</Link>
 					</div>
 				</td>

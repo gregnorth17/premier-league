@@ -56,9 +56,9 @@ const MatchDetails = ({fixture}) => {
             <Box pb='.5em'>
               <Box sx={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(5, 1fr)',
+                gridTemplateColumns: 'repeat(5, 20%)',
                 gap: '1.25em .5em',
-                p: '.75em 2.25em 0em' 
+                p: '.75em 2.25em 0em',
               }}>
                 <Typography sx={[underlineHover, {color: '#c58af9', fontSize:'rem', whiteSpace: 'nowrap'}]}>{leagueName}</Typography>
                 <Typography color='#9aa0a6'>{new Date(date).toLocaleDateString()}</Typography>
@@ -88,7 +88,7 @@ const MatchDetails = ({fixture}) => {
                 }}>
                   <img src={awayBadge} alt="Away team badge"/>
                 </Box>
-                <Typography sx={underlineHover} fontWeight='bold' color='#e8eaed' align='center'>{homeTeam}</Typography>
+                <Typography sx={underlineHover} fontWeight='bold' color='#e8eaed' align='center' noWrap>{homeTeam}</Typography>
                 <Typography sx={underlineHover} fontWeight='bold' color='#e8eaed' gridColumn={5}  align='center'>{awayTeam}</Typography>
                 <Box gridColumn={1}>
                   {checkGoals(homeTeam)}

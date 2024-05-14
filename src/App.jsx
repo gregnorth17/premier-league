@@ -21,8 +21,16 @@ const queryClient = new QueryClient()
 export const Context = createContext()
 
 const App = () => {
+  // change or make so you can pick year of league
+  // error element
+  // match detail small screens
+  // lineup small screens
+  // players page doesn't load players
+  // sort out folders and sub folders
+  // team nav bar focus is the opposite
+  // animations from motionmaybe prem logo instead of circle
 
-  const [teamName, setTeamName] = useState(null)
+  const [teamName, setTeamName] = useState(localStorage.getItem('team'))
 
 	const router = createBrowserRouter(createRoutesFromElements(
 		<>
@@ -32,13 +40,13 @@ const App = () => {
         <Route path='seasonstats' element={<SeasonStats />} />
         <Route path='*' element={<NotFound />} />
       </Route>
-      <Route path=':id' element={<TeamPageLayout teamName={teamName} />} errorElement={<Error />}>
-        <Route index element={<TeamPage />} />
+      <Route path=':id' element={<TeamPageLayout teamName={teamName} />} >
+        <Route index element={<TeamPage />} errorElement={<Error />}/>
         <Route path='table' element={<Home />} />
         <Route path='players' element={<Players />} />
       </Route>
-      <Route path='matches/:fixtureId/' element={<MatchDetailsLayout />} errorElement={<Error />}>
-        <Route index element={<Stats />} />
+      <Route path='matches/:fixtureId/' element={<MatchDetailsLayout />} >
+        <Route index element={<Stats />} errorElement={<Error />}/>
         <Route path='lineups' element={<Lineups />}  />
       </Route>
 		</>

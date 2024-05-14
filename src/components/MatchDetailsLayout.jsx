@@ -1,3 +1,4 @@
+import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useQuery } from '@tanstack/react-query'
 import { Outlet, useParams } from 'react-router-dom'
@@ -15,7 +16,7 @@ const MatchDetailsLayout = () => {
       queryFn: () => getFixtureData(fixtureId)
     })
 
-  if(isLoading) return <CircularProgress />
+  if(isLoading) return <Box sx={{ textAlign: 'center' }}><CircularProgress /></Box>
   if(error) return <h1>Something went wrong, try again later</h1>
   
 	return (
