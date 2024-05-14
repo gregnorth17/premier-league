@@ -38,8 +38,7 @@ const Fixture = ({fixture}) => {
 				to={`/matches/${id}`}>
 				<Box sx={{
 						display: 'grid',
-						// gridTemplateColumns: '40px 135px auto 106px',
-            gridTemplateColumns: 'repeat(4, auto)',
+						gridTemplateColumns: '40px 135px auto 106px',
 						alignItems: 'center',
 						border: '.5px solid rgb(60,64,67)',
 						height: '7em',

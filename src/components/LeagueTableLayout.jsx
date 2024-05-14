@@ -25,12 +25,12 @@ const LeagueTableLayout = ({homeTeam, awayTeam}) => {
 
   // console.log(data.response)
 
-  if(isLoading) return <CircularProgress />
+  if(isLoading) return <CircularProgress style={{margin: '0 auto'}} />
   if(error) return <h1>Something went wrong, try again later</h1>
 
 	return (
 		<>
-			<LeagueTable sx={{ maxWidth: '752px', marginX: 'auto'}}>
+			<LeagueTable >
 				{data?.response[0].league.standings[0].map((team, {id}) => <LeaguePosition key={id} team={team} homeTeam={homeTeam} awayTeam={awayTeam} />)}
 			</LeagueTable>
 			<LeagueTableKey />

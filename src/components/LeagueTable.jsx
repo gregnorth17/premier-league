@@ -13,11 +13,11 @@ const LeagueTable = ({children}) => {
 		padding: '.5em',
 		fontSize: '.75rem'
 	}
-
+// maxWidth: '752px'
 	return (
 		<>
-			<TableContainer>
-      <Table  sx={{ margin: '0 auto', background: '#202124'}} aria-label="simple table">
+			<TableContainer sx={{ overflowX: 'auto'}}>
+      <Table  sx={{ minWidth: '600px', maxWidth: '752px', margin: '0 auto', background: '#202124'}} aria-label="simple table">
         <TableHead>
           <TableRow >
             <TableCell sx={cellStyle}>Club</TableCell>

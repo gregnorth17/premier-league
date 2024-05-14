@@ -5,8 +5,8 @@ import LeagueTableLayout from '../components/LeagueTableLayout'
 const Home = () => {
 	return (
 		<>
-			<Box sx={{ maxWidth: '752px', marginX: 'auto'}}>
-        <BasicSelect />
+			<Box sx={{ maxWidth: '752px', padding: '0 .5em', marginX: 'auto'}}>
+        <BasicSelect  />
         <LeagueTableLayout />
 			</Box>
 		</>

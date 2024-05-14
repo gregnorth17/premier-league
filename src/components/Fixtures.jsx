@@ -5,10 +5,9 @@ const Fixtures = ({children}) => {
 		<Box 
       className='fixtures'
       sx={{
-        display: 'grid',
-        // gridTemplateColumns: 'repeat(2, auto)',
-        
-        gridTemplateColumns: 'repeat(2, minmax(300px, 2fr) )',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
         maxWidth: '650px',
         margin: '0 auto',
         padding: '0 .5em'
