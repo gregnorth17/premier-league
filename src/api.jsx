@@ -2,7 +2,6 @@ import axios from 'axios';
 
 // const apiKey = process.env.API_KEY;
 
-
 const headers =  {
 				"x-apisports-key":"e6ada454a96b14b4c730492bfbac7357",
 			}

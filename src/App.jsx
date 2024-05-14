@@ -21,9 +21,6 @@ const queryClient = new QueryClient()
 export const Context = createContext()
 
 const App = () => {
-  // make table side scroll on smaller devices
-  // padding table
-  // Center loading circle
 
   const [teamName, setTeamName] = useState(null)
 

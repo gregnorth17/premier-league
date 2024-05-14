@@ -13,7 +13,7 @@ const LeagueTable = ({children}) => {
 		padding: '.5em',
 		fontSize: '.75rem'
 	}
-// maxWidth: '752px'
+  
 	return (
 		<>
 			<TableContainer sx={{ overflowX: 'auto'}}>

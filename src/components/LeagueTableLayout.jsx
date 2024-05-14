@@ -1,7 +1,7 @@
+import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useQuery } from "@tanstack/react-query"
 import { getLeagueData } from '../api'
-// import axios from 'axios'
 import LeagueTable from "../components/LeagueTable"
 import LeaguePosition from './LeaguePosition'
 import LeagueTableKey from './LeagueTableKey'
@@ -23,9 +23,7 @@ const LeagueTableLayout = ({homeTeam, awayTeam}) => {
     refetchInterval: oneDay
   })
 
-  // console.log(data.response)
-
-  if(isLoading) return <CircularProgress style={{margin: '0 auto'}} />
+  if(isLoading) return <Box sx={{ textAlign: 'center' }}><CircularProgress  /></Box>
   if(error) return <h1>Something went wrong, try again later</h1>
 
 	return (

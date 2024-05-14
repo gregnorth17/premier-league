@@ -1,3 +1,6 @@
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+
 import CircularProgress from '@mui/material/CircularProgress'
 import Paper from '@mui/material/Paper'
 import TableContainer from '@mui/material/TableContainer'
@@ -19,13 +22,15 @@ const SeasonStats = () => {
     refetchInterval: oneDay
   })
 
-  if(isLoading) return <CircularProgress />
+  if(isLoading) return <Box sx={{ textAlign: 'center' }}><CircularProgress  /></Box>
   if(error) return <h1>Something went wrong, try again later</h1>
 
 	return (
-		<TableContainer sx={{ maxWidth: '752px', background: '#202124', margin: '0 auto' }} component={Paper}>
-				{data?.map((stats, index) => <SeasonStatsTable key={index} stats={stats} title={tableTitles[index]} />)}
-		</TableContainer>
+    <Container>
+      <TableContainer sx={{ maxWidth: '752px', background: '#202124', margin: '0 auto' }} component={Paper}>
+          {data?.map((stats, index) => <SeasonStatsTable key={index} stats={stats} title={tableTitles[index]} />)}
+      </TableContainer>
+    </Container>
 	)
 }
 

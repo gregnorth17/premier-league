@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
 // import { Context } from '../App';
+import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useQuery } from '@tanstack/react-query'
 import { getFixtures } from '../api'
@@ -20,7 +21,7 @@ const Matches = ({resultFilter}) => {
     refetchInterval: oneDay
   })
 
-  if(isLoading) return <CircularProgress />
+  if(isLoading) return <Box sx={{ textAlign: 'center' }}><CircularProgress  /></Box>
   if(error) return <h1>Something went wrong, try again later</h1>
 
 	const teamFixtures = paramsId &&
