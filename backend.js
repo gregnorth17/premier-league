@@ -12,31 +12,49 @@ app.use(cors())
 
 const baseUrl = 'https://v3.football.api-sports.io/'
 
-const makeGetRequest = (baseUrl, endpoint) => {
+const makeGetRequest = (baseUrl, endpoint, params) => {
   const options = {
     method: 'GET',
-    url: 'https://v3.football.api-sports.io/standings?league=39&season=2023',
+    url: `${baseUrl}${endpoint}`,
+    params: params,
     headers: {
       "x-apisports-key": process.env.VITE_API_KEY
     }
   }
-
-  axios.request(options).then(response => res.json(response.data))
-                        .catch(error => {console.error.error(error)})
+  return options
 }
 
 app.get('/', (req, res) => {
-  const options = {
-    method: 'GET',
-    url: 'https://v3.football.api-sports.io/standings?league=39&season=2023',
-    headers: {
-      "x-apisports-key": process.env.VITE_API_KEY
-    }
-  }
+  console.log(req.query)
 
-  axios.request(options).then(response => res.json(response.data))
+  axios.request(makeGetRequest(baseUrl, 'standings?', {league: '39', season: '2023'}))
+                        .then(response => res.json(response.data))
                         .catch(error => {console.error.error(error)})
 })
+
+
+
+app.get('/matches', (req, res) => {
+  axios.request(makeGetRequest(baseUrl, 'fixtures?', {league: 39, season: 2023})).then(response => res.json(response.data))
+                        .catch(error => {console.error.error(error)})
+})
+const url = new URLSearchParams()
+console.log(url)
+
+// const baseUrl = 'http://localhost:8000'
+//   const queryParams = new URLSearchParams({
+//     endpoint: 'fixtures?',
+//     params2: `id=${fixtureId}`
+
+
+
+// app.get('/matches', (req, res) => {
+//   // fixtures?fixtures?id=${fixtureId}
+//   console.log(req.query)
+//   axios.request(getOptions(baseUrl, 'fixtures?league=39&season=2023')).then(response => res.json(response.data))
+//                         .catch(error => {console.error.error(error)})
+// })
+
 
 
 
