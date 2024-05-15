@@ -29,7 +29,7 @@ const App = () => {
   // players page doesn't load players
   // sort out folders and sub folders
   // animations from motionmaybe prem logo instead of circle
-
+  
   const [teamName, setTeamName] = useState(localStorage.getItem('team'))
   
 	const router = createBrowserRouter(createRoutesFromElements(

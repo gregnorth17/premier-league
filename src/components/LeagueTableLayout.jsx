@@ -7,13 +7,8 @@ import LeaguePosition from './LeaguePosition'
 import LeagueTableKey from './LeagueTableKey'
 
 const LeagueTableLayout = ({homeTeam, awayTeam}) => {
-  // check error
+  
   const oneDay = 60000 * 60 * 24
-
-  // const getLeagueData = async () => {
-  //   return await axios.get('/.netlify/functions/leagueDataApi').then(res => res.data)
-  //   // console.log(data)
-  // }
 
   const {data, isLoading} = useQuery({
     queryKey: ['leagueTable'],
@@ -28,7 +23,7 @@ const LeagueTableLayout = ({homeTeam, awayTeam}) => {
 
 	return (
 		<>
-			<LeagueTable >
+			<LeagueTable>
 				{data?.response[0].league.standings[0].map((team, {id}) => <LeaguePosition key={id} team={team} homeTeam={homeTeam} awayTeam={awayTeam} />)}
 			</LeagueTable>
 			<LeagueTableKey />
