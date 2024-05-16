@@ -58,58 +58,88 @@ const MatchDetails = ({fixture}) => {
           <Box sx={{background: '#212121', maxWidth:'632px', m:'0 auto'}}  >
             <Box pb='.5em'>
               <Box sx={{
-                // display: 'grid',
-                // gridTemplateColumns: 'repeat(5, 20%)',
-                gap: '1.25em .5em',
                 p: '.75em 2.25em 0em',
               }}>
-                <Typography sx={[underlineHover, {color: '#c58af9', fontSize:'rem', whiteSpace: 'nowrap'}]}>{leagueName}</Typography>
-                <Typography color='#9aa0a6'>{new Date(date).toLocaleDateString()}</Typography>
-                <Typography color='#bdc1c6' align='center' gridColumn={5}>{displayMatchStatus(matchStatus)}</Typography>
-                <Box  sx={{
-                  height: '48px',
-                  width: '48px',
-                  justifySelf: 'center',
-                  alignSelf: 'center'
-                }}>
-                  <img src={homeBadge} alt="Home team badge" />
+                <Box sx={{display: 'flex', mb: '2em'}}>
+                  <Typography sx={[underlineHover, {color: '#c58af9', fontSize:'rem', whiteSpace: 'nowrap'}]}>{leagueName}</Typography>
+                  <Typography ml='1em' color='#9aa0a6'>{new Date(date).toLocaleDateString()}</Typography>
+                  <Typography ml='auto' color='#bdc1c6'>{displayMatchStatus(matchStatus)}</Typography>
                 </Box>
-                <Typography color='#bdc1c6' variant='h4' alignSelf='center' justifySelf='center'>{homeGoals}</Typography>
-                <Box alignSelf='center' justifySelf='center'>
-                  {
-                    matchStatus === "Not Started"?
-                    <Typography color='#bdc1c6'>vs</Typography>:
-                    <HorizontalRuleIcon sx={{color: '#bdc1c6'}} />
-                  }
-                </Box>
-                <Typography color='#bdc1c6' variant='h4' alignSelf='center' justifySelf='center'>{awayGoals}</Typography>
-                <Box sx={{
-                  height: '48px',
-                  width: '48px',
-                  justifySelf: 'center',
-                  alignSelf: 'center'
-                }}>
-                  <img src={awayBadge} alt="Away team badge"/>
-                </Box>
-                <Typography sx={underlineHover} fontWeight='bold' color='#e8eaed' align='center' noWrap>{homeTeam}</Typography>
-                <Typography sx={underlineHover} fontWeight='bold' color='#e8eaed' gridColumn={5}  align='center'>{awayTeam}</Typography>
-                <Box gridColumn={1}>
-                  {checkGoals(homeTeam)}
-                </Box>
-                {homeGoals > 0 || awayGoals > 0 ?
-                  <SportsSoccerIcon 
-                    sx={{
-                      gridColumn: 3,
-                      justifySelf: 'center',
+                <Box sx={{display: 'flex', justifyContent: 'space-between', padding: '0 2em'}}>
+                  <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '20%'
+                  }}
+                  >
+                    <Box  sx={{
+                      margin: '1em 0',
+                      paddingTop: '.5em',
+                      height: '48px',
+                      width: '48px',
                       alignSelf: 'center',
-                      color: '#fff'
-                      }}
-                  />
-                :
-                ''
-                }
-                <Box gridColumn={5}>
-                  {checkGoals(awayTeam)}
+                      justifySelf: 'center',
+                      textAlign: 'center'
+                    }}>
+                      <img src={homeBadge} alt="Home team badge" />
+                    </Box>
+                    <Typography sx={underlineHover} fontWeight='bold' color='#e8eaed' align='center' noWrap>{homeTeam}</Typography>
+
+                    {/* <h4 style={{textAlign: 'center', margin: '0'}}>team name</h4> */}
+                  </Box>
+                  <Typography color='#bdc1c6' variant='h4' alignSelf='center' justifySelf='center'>{homeGoals}</Typography>
+                  <Box alignSelf='center' justifySelf='center'>
+                    {
+                      matchStatus === "Not Started"?
+                      <Typography color='#bdc1c6'>vs</Typography>:
+                      <HorizontalRuleIcon sx={{color: '#bdc1c6'}} />
+                    }
+                  </Box>
+                  <Typography color='#bdc1c6' variant='h4' alignSelf='center' justifySelf='center'>{awayGoals}</Typography>
+                  <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '20%'
+                  }}
+                  >
+                    <Box  sx={{
+                      margin: '1em 0',
+                      paddingTop: '.5em',
+                      height: '48px',
+                      width: '48px',
+                      alignSelf: 'center',
+                      justifySelf: 'center',
+                      textAlign: 'center',
+                      
+                    }}>
+                      <img src={awayBadge} alt="Home team badge" />
+                    </Box>
+                    <Typography sx={underlineHover} fontWeight='bold' color='#e8eaed' align='center'>{awayTeam}</Typography>
+                  </Box>
+                </Box>
+                <Box sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  marginTop: '1em'
+                  // padding: '0 2em'
+                }}>
+                  <Box>
+                    {checkGoals(homeTeam)}
+                  </Box>
+                  {homeGoals > 0 || awayGoals > 0 ?
+                    <SportsSoccerIcon
+                      sx={{
+                        justifySelf: 'center',
+                        alignSelf: 'center',
+                        color: '#fff'
+                        }}
+                    />
+                  :
+                  ''
+                  }
+                  <Box>
+                    {checkGoals(awayTeam)}
+                  </Box>
                 </Box>
               </Box>
             </Box>
