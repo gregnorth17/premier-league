@@ -2,7 +2,7 @@ import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useQuery } from '@tanstack/react-query'
 import { Outlet, useParams } from 'react-router-dom'
-import { getFixtureData } from '../api'
+// import { getFixtureData } from '../api'
 import MatchDetails from './MatchDetails'
 import MatchDetailsNav from './MatchDetailsNav'
 
@@ -10,10 +10,14 @@ import MatchDetailsNav from './MatchDetailsNav'
 const MatchDetailsLayout = () => {
 
 	const { fixtureId } = useParams()
+
+  const getFixtureData = () => {
+    return JSON.parse(localStorage.getItem('fixture'))
+  }
   
   const { data, isLoading } = useQuery({
       queryKey: ['matchDetails', fixtureId],
-      queryFn: () => getFixtureData(fixtureId)
+      queryFn: () => getFixtureData()
     })
 
   if(isLoading) return <Box sx={{ textAlign: 'center' }}><CircularProgress /></Box>

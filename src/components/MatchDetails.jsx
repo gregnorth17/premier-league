@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom'
 
 
 const MatchDetails = ({fixture}) => {
-  console.log(fixture)
-  localStorage.setItem('fixture', JSON.stringify(fixture))
-  const fixture2 = JSON.parse(localStorage.getItem('fixture'))
-  console.log(fixture2)
+  // console.log(fixture)
+  // localStorage.setItem('fixture', JSON.stringify(fixture))
+  // const fixture2 = JSON.parse(localStorage.getItem('fixture'))
+  // console.log(fixture2)
   try {
     const {
       events,
@@ -21,7 +21,7 @@ const MatchDetails = ({fixture}) => {
       },
       goals: {away: awayGoals, home: homeGoals}
     }
-    = fixture2
+    = fixture
   
     const checkGoals = team => (
       events?.filter(({team: {name}, type}) => name === team && type === "Goal")
@@ -58,8 +58,8 @@ const MatchDetails = ({fixture}) => {
           <Box sx={{background: '#212121', maxWidth:'632px', m:'0 auto'}}  >
             <Box pb='.5em'>
               <Box sx={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(5, 20%)',
+                // display: 'grid',
+                // gridTemplateColumns: 'repeat(5, 20%)',
                 gap: '1.25em .5em',
                 p: '.75em 2.25em 0em',
               }}>
