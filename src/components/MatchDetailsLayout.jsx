@@ -19,13 +19,13 @@ const MatchDetailsLayout = () => {
   if(isLoading) return <Box sx={{ textAlign: 'center' }}><CircularProgress /></Box>
   if(data.response.length === 0) return <h1 className='error'>Something went wrong, try again later</h1>
   
-  
+  console.log(data)
 	return (
 		<>
-			<MatchDetails fixture={data?.data.response[0]}  />
+			<MatchDetails fixture={data?.response[0]}  />
 			<div style ={{background: '#212121', maxWidth: '632px', margin: '0 auto'}}>
 				<MatchDetailsNav />
-				<Outlet context={data?.data.response[0]}  />
+				<Outlet context={data?.response[0]}  />
 			</div>
 		</>
 	)

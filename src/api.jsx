@@ -9,29 +9,31 @@ const endPoints = [
   `https://v3.football.api-sports.io/players/topredcards?league=39&season=2023`
 ]
 
-export const getLeagueData = async () => {
+const getData = (endpoint, params) => {
+  const baseUrl = 'http://localhost:8000/'
   const options = {
     method: 'GET',
-    url: 'http://localhost:8000',
-    params: {league: '39', season: '2023'}
+    url: `${baseUrl}${endpoint}`,
+    params: params
   }
-  return await axios.request(options).then(res => res.data)
-  // await axios.get(`http://localhost:8000`).then(res => res.data)
+  return options
 }
 
-export const getFixtures = async () => {
-  const options = {
-    method: 'GET',
-    url: 'http://localhost:8000/matches',
-    params: {league: '39', season: '2023'}
-  }
-  return await axios.get(`http://localhost:8000/matches`).then(res => res.data)
-}
+export const getLeagueData = async () => (
+  await axios.request(getData('', {league: '39', season: '2023'}))
+             .then(response => response.data)
+)
+
+export const getFixtures = async () => (
+  await axios.request(getData('matches', {league: '39', season: '2023'}))
+             .then(response => response.data)
+)
 
 // https://v3.football.api-sports.io/fixtures?fixtures?id=${fixtureId}
 
 export const getFixtureData = async fixtureId => (
-  await axios.get(`http://localhost:8000/matches/id=${fixtureId}`).then(res => res.data)
+  await axios.request(getData(`fixture`, {id: fixtureId}))
+             .then(response => response.data)
 )
 
 export const getSeasonStats = () => (
