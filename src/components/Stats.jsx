@@ -2,7 +2,7 @@
 import CircularProgress from '@mui/material/CircularProgress'
 import { useQuery } from '@tanstack/react-query'
 import { useOutletContext, useParams } from 'react-router-dom'
-import { getProbability } from '../api'
+import { getPrediction } from '../api'
 import LeagueTableLayout from './LeagueTableLayout'
 import MatchStats from './MatchStats'
 import Probability from './Probability'
@@ -13,7 +13,7 @@ const Stats = () => {
   
   const { data, isLoading, error } = useQuery({
     queryKey: ['probability'],
-    queryFn: () => getProbability(fixtureId),
+    queryFn: () => getPrediction(fixtureId),
     refetchOnWindowFocus: false
   })
 

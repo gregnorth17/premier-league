@@ -6,15 +6,12 @@ import { Link } from 'react-router-dom'
 
 
 const MatchDetails = ({fixture}) => {
-  // console.log(fixture)
-  // localStorage.setItem('fixture', JSON.stringify(fixture))
-  // const fixture2 = JSON.parse(localStorage.getItem('fixture'))
-  // console.log(fixture2)
+  console.log(fixture)
   try {
     const {
       events,
       league: {name: leagueName},
-      fixture: {date, status: {long: matchStatus}},
+      fixture: {date, status: {short: matchStatus}},
       teams: {
         away: {name: awayTeam, logo: awayBadge}, 
         home: {name: homeTeam, logo: homeBadge}
@@ -60,7 +57,7 @@ const MatchDetails = ({fixture}) => {
               <Box sx={{
                 p: '.75em 2.25em 0em',
               }}>
-                <Box sx={{display: 'flex', mb: '2em'}}>
+                <Box sx={{display: 'flex', flexWrap: 'wrap', mb: '2em'}}>
                   <Typography sx={[underlineHover, {color: '#c58af9', fontSize:'rem', whiteSpace: 'nowrap'}]}>{leagueName}</Typography>
                   <Typography ml='1em' color='#9aa0a6'>{new Date(date).toLocaleDateString()}</Typography>
                   <Typography ml='auto' color='#bdc1c6'>{displayMatchStatus(matchStatus)}</Typography>

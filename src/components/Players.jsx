@@ -25,7 +25,7 @@ const Players = () => {
   if(isLoading) return <Box sx={{ textAlign: 'center' }}><CircularProgress /></Box>
   if(error) return <h1>Something went wrong, try again later</h1>
 
-  const playersHTML = data?.data.response[0].players.map(({photo, name, position, index}) => {
+  const playersHTML = data?.response[0].players.map(({photo, name, position, index}) => {
     return (
       <div style={style} key={index}>
         <img src={photo} alt="player" />

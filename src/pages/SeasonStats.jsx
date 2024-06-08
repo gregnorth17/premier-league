@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-
 import CircularProgress from '@mui/material/CircularProgress'
+import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import TableContainer from '@mui/material/TableContainer'
 import { useQuery } from '@tanstack/react-query'
@@ -22,8 +21,10 @@ const SeasonStats = () => {
     refetchInterval: oneDay
   })
 
-  if(isLoading) return <Box sx={{ textAlign: 'center' }}><CircularProgress  /></Box>
-  if(data[0].length === 0) return <h1 className='error'>Something went wrong, try again later</h1>
+  console.log(data)
+
+  if(isLoading) return <Box sx={{ textAlign: 'center' }}><CircularProgress /></Box>
+  if(data[0]?.length === 0) return <h1 className='error'>Something went wrong, try again later</h1>
 
 	return (
     <Container>
